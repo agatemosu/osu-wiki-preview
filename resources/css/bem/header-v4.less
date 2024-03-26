@@ -1,0 +1,115 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.header-v4 {
+  @_top: header-v4;
+
+  @media print {
+    display: none;
+  }
+
+  &__bg {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      background-image: linear-gradient(to right, @osu-colour-d5, transparent 200px, transparent 1000px, @osu-colour-d5 1200px);
+      background-position: center;
+      height: 100%;
+      width: 1200px;
+      display: block;
+      flex: none;
+    }
+
+    .@{_top}--help & {
+      .at2x-simple("~@images/headers/wiki.jpg");
+    }
+  }
+
+  &__bg-container {
+    .full-size();
+    background-color: @osu-colour-d5;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+
+    &--main {
+      .large() {
+        @media @desktop {
+          min-height: 450px;
+        }
+      }
+
+      @media @desktop {
+        padding-top: @nav2-height + 15px;
+        min-height: @header-container-min-height;
+      }
+    }
+  }
+
+  &__content {
+    .page-width-default();
+    color: @osu-colour-c1;
+    position: relative;
+  }
+
+  &__icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    align-self: stretch;
+    width: 40px;
+    margin-right: 10px;
+    flex: none;
+    background-size: 75%;
+
+    .@{_top}--help & {
+      background-image: url('~@images/icons/help.svg');
+    }
+  }
+
+  &__row {
+    padding-top: 0;
+    padding-bottom: 0;
+    .default-gutter-v2();
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    &--bar {
+      background-color: @osu-colour-d4;
+    }
+
+    &--title {
+      background-color: @osu-colour-d5;
+      font-size: @font-size--title-small;
+
+      @media @desktop {
+        font-size: @font-size--large;
+        height: @header-title-height;
+      }
+    }
+  }
+
+  &__title {
+    display: none;
+
+    @media @desktop {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+.osu-layout {
+  ._page {
+    .default-box-shadow();
+    background-color: @osu-colour-b5;
+  }
+
+  display: flex;
+  flex-direction: column;
+
+  transition: filter 200ms ease-in-out, opacity 200ms ease-in-out; // for fading in after &--masked is removed
+
+  &--body {
+    --nav-logo: url('~@images/layout/osu-logo-white.svg');
+    --nav-logo-bg: url('~@images/layout/osu-logo-triangles.svg');
+
+    background-color: @osu-colour-b6;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    &--full {
+      flex: 1 0 auto;
+    }
+  }
+}

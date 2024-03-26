@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="{{ current_locale }}">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ h1_content }} | osu! wiki preview</title>
+		<link rel="icon" href="/static/images/help.svg" />
+		<link rel="stylesheet" href="/static/main.css" />
+		<script src="/static/main.js"></script>
+	</head>
+	<body class="osu-layout osu-layout--body t-section">
+		<style>
+			:root {
+				--base-hue: 45;
+				--base-hue-deg: 45deg;
+			}
+			.footnotes-sep {
+				display: none;
+			}
+		</style>
+		<div class="blackout js-blackout" data-visibility="hidden"></div>
+		<div class="visible-xs js-header--main">
+			<div class="navbar-mobile-before"></div>
+			<div class="navbar-mobile" role="navigation">
+				<div class="navbar-mobile__header-section">
+					<a class="navbar-mobile__logo"></a>
+					<span class="navbar-mobile__brand">wiki</span>
+				</div>
+				<div
+					class="navbar-mobile__header-section navbar-mobile__header-section--buttons"
+				>
+					<button
+						type="button"
+						class="navbar-mobile__toggle js-click-menu"
+						data-click-menu-target="mobile-menu"
+					>
+						<span class="navbar-mobile__toggle-icon">
+							<i class="fas fa-chevron-down"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+			<div
+				class="mobile-menu js-click-menu u-fancy-scrollbar"
+				data-click-menu-id="mobile-menu"
+				data-visibility="hidden"
+				style="display: block"
+			>
+				<div class="mobile-menu__content">
+					<div class="mobile-menu__tabs">
+						<a
+							href="https://github.com/{{ repository_owner }}"
+							class="mobile-menu-tab mobile-menu-tab--user js-click-menu"
+						>
+							<span class="mobile-menu-tab__avatar">
+								<span
+									class="avatar avatar--full-rounded"
+									style="background-image: url('https://a.ppy.sh/18202514')"
+								></span>
+							</span>
+							<span class="u-ellipsis-overflow">Agatem</span>
+						</a>
+						<button class="mobile-menu-tab js-click-menu js-click-menu--active">
+							<span class="fas fa-sitemap"></span>
+						</button>
+					</div>
+					<div class="mobile-menu__item js-click-menu js-click-menu--active">
+						<div class="navbar-mobile-item">
+							<a
+								class="navbar-mobile-item__main js-click-menu"
+								href="/wiki/{{ current_locale }}/Main_page"
+							>
+								<span
+									class="navbar-mobile-item__icon navbar-mobile-item__icon--closed"
+								>
+									<i class="fas fa-chevron-right"></i>
+								</span>
+								wiki
+							</a>
+						</div>
+						<div class="navbar-mobile-item">
+							<a class="navbar-mobile-item__main js-click-menu">
+								<span
+									class="navbar-mobile-item__icon navbar-mobile-item__icon--closed"
+								>
+									<i class="fas fa-chevron-right"></i>
+								</span>
+								news
+							</a>
+						</div>
+						<div class="navbar-mobile-item">
+							<a
+								class="navbar-mobile-item__main js-click-menu"
+								href="https://github.com/agatemosu/osu-wiki-preview"
+								target="_blank"
+								rel="noopener"
+							>
+								<span
+									class="navbar-mobile-item__icon navbar-mobile-item__icon--closed"
+								>
+									<i class="fas fa-chevron-right"></i>
+								</span>
+								source
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="js-pinned-header hidden-xs nav2-header">
+			<div class="nav2-header__body">
+				<div class="nav2-header__triangles"></div>
+				<div class="nav2-header__transition-overlay"></div>
+				<div class="osu-page">
+					<div class="nav2 js-nav-button">
+						<div
+							class="nav2__colgroup nav2__colgroup--menu js-nav-button--container"
+						>
+							<div class="nav2__col nav2__col--logo">
+								<a class="nav2__logo-link" href="/">
+									<div class="nav2__logo nav2__logo--bg"></div>
+									<div class="nav2__logo"></div>
+								</a>
+							</div>
+							<div class="nav2__col nav2__col--menu">
+								<a
+									class="nav2__menu-link-main"
+									href="/wiki/{{ current_locale }}/Main_page"
+								>
+									<span class="u-relative">
+										wiki
+										<span
+											class="nav2__menu-link-bar u-section--bg-normal"
+										></span>
+									</span>
+								</a>
+							</div>
+							<div class="nav2__col nav2__col--menu">
+								<a class="nav2__menu-link-main">
+									<span>news</span>
+								</a>
+							</div>
+							<div class="nav2__col nav2__col--menu">
+								<a
+									class="nav2__menu-link-main"
+									href="https://github.com/agatemosu/osu-wiki-preview"
+									target="_blank"
+									rel="noopener"
+								>
+									<span>source</span>
+								</a>
+							</div>
+						</div>
+						<div
+							class="nav2__colgroup nav2__colgroup--icons js-nav-button--container"
+						>
+							<div class="nav2__col nav2__col--avatar">
+								<a
+									class="avatar avatar--nav2 js-current-user-avatar js-click-menu js-user-login--menu js-user-header"
+									href="https://github.com/{{ repository_owner }}"
+									style="background-image: url('https://a.ppy.sh/18202514')"
+								></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="osu-layout__section osu-layout__section--full">
+			<div class="header-v4 header-v4--help">
+				<div class="header-v4__container header-v4__container--main">
+					<div class="header-v4__bg-container">
+						<div class="header-v4__bg"></div>
+					</div>
+
+					<div class="header-v4__content">
+						<div class="header-v4__row header-v4__row--title">
+							<div class="header-v4__icon"></div>
+							<div class="header-v4__title">wiki</div>
+						</div>
+					</div>
+				</div>
+				<div class="header-v4__container">
+					<div class="header-v4__content">
+						<div class="header-v4__row header-v4__row--bar">
+							<ol class="header-nav-v4 header-nav-v4--breadcrumb">
+								<li class="header-nav-v4__item">
+									<a
+										class="header-nav-v4__link"
+										href="/wiki/{{ current_locale }}/Main_page"
+									>
+										<span>index</span>
+									</a>
+								</li>
+								{% if parent_pages %}
+								<li class="header-nav-v4__item">
+									<a
+										class="header-nav-v4__link"
+										href="/wiki/{{ current_locale }}/{{ parent_pages }}"
+									>
+										<span>{{ parent_pages }}</span>
+									</a>
+								</li>
+								{% endif %}
+								<li class="header-nav-v4__item">
+									<a
+										class="header-nav-v4__link"
+										href="/wiki/{{ current_locale }}/{{ article_path }}"
+									>
+										<span>{{ h1_content }}</span>
+									</a>
+								</li>
+							</ol>
+
+							<div class="header-buttons">
+								<div class="header-buttons__item">
+									<a
+										class="btn-osu-big btn-osu-big--rounded-thin"
+										href="/osu-wiki-tools/{{ github_path }}"
+										>Check</a
+									>
+								</div>
+
+								<div class="header-buttons__item">
+									<a class="btn-osu-big btn-osu-big--rounded-thin" href="?open"
+										>Open</a
+									>
+								</div>
+
+								<div class="header-buttons__item">
+									<a
+										class="btn-osu-big btn-osu-big--rounded-thin"
+										href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ github_path }}"
+										title="Show on GitHub"
+									>
+										<i class="fab fa-github"></i>
+									</a>
+								</div>
+
+								<div class="header-buttons__item">
+									<a
+										class="btn-osu-big btn-osu-big--rounded-thin js-click-menu"
+										data-click-menu-target="wiki-locales"
+									>
+										<span class="btn-osu-big__content">
+											<span
+												class="btn-osu-big__icon-inline btn-osu-big__icon-inline--left"
+											>
+												<span
+													class="flag-country flag-country--flat"
+													style="background-image: url('/assets/images/flags/{{ current_flag }}.svg');"
+												></span>
+											</span>
+											{{ current_language }}
+											<span
+												class="btn-osu-big__icon-inline btn-osu-big__icon-inline--right"
+											>
+												<i class="fas fa-angle-down"></i>
+											</span>
+										</span>
+									</a>
+									{% if locales_available %}
+									<div
+										class="simple-menu simple-menu--wiki-locales js-click-menu"
+										data-visibility="hidden"
+										data-click-menu-id="wiki-locales"
+									>
+										<div class="simple-menu__content">
+											{% for locale in locales_available %} {% set index =
+											loop.index0 %} {% set language =
+											languages_available[index] %} {% set flag =
+											available_flags[index] %}
+											<a
+												class="simple-menu__item"
+												href="/wiki/{{ locale }}/{{ article_path }}"
+											>
+												<span
+													class="nav2-locale-item nav2-locale-item--no-padding"
+												>
+													<span class="nav2-locale-item__flag">
+														<span
+															class="flag-country flag-country--flat"
+															style="background-image: url('/assets/images/flags/{{ flag }}.svg');"
+														></span>
+													</span>
+													{{ language }}
+												</span>
+											</a>
+											{% endfor %}
+										</div>
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="osu-page osu-page--wiki">
+				<div class="wiki-page">
+					<div class="wiki-page__toc">
+						<div style="margin-bottom: 10px; color: hsl(var(--hsl-orange-1))">
+							Current branch: <b>{{ current_branch }}</b>
+						</div>
+						<div class="sidebar">
+							<button
+								type="button"
+								class="sidebar__mobile-toggle js-mobile-toggle"
+								data-mobile-toggle-target="wiki-toc"
+							>
+								<h2 class="sidebar__title">Contents</h2>
+								<div class="visible-xs sidebar__mobile-toggle-icon">
+									<i class="fas fa-chevron-down"></i>
+								</div>
+							</button>
+							<div
+								class="js-mobile-toggle hidden-xs sidebar__content"
+								data-mobile-toggle-id="wiki-toc"
+							>
+								{{ toc|safe }}
+							</div>
+						</div>
+					</div>
+					<div class="wiki-page__content">
+						{% if front_matter["needs_cleanup"] %}
+						<div class="wiki-notice">
+							This page does not meet the standards of the osu! wiki and needs
+							to be cleaned up or rewritten. If you are able to help out, please
+							consider updating the article!
+						</div>
+						{% endif %} {% if front_matter["outdated_translation"] %}
+						<div class="wiki-notice">
+							This page contains an outdated translation of the original
+							content. Please check the
+							<a href="/wiki/en/{{ article_path }}">English version</a> for the
+							most accurate information (and consider updating the translation
+							if you are able to help out)!
+						</div>
+						{% endif %} {% if front_matter["outdated"] %}
+						<div class="wiki-notice">
+							The content on this page is incomplete or outdated. If you are
+							able to help out, please consider updating the article!
+						</div>
+						{% endif %} {% if front_matter["stub"] %}
+						<div class="wiki-notice">
+							This article is incomplete and waiting on someone to expand it.
+						</div>
+						{% endif %}
+						<div class="osu-md osu-md--wiki">{{ content|safe }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+@import "app";
+
+@fa-weight-regular: 400;
+@fa-weight-solid: 900;
+
+@font-grade: Venera, sans-serif;
+@font-content: Inter, sans-serif;
+@font-default: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', 'Apple SD Gothic Neo', sans-serif;
+@font-default-vi: Quicksand, Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-th: Torus, Inter, 'Helvetica Neue', 'Prompt', Tahoma, Arial, 'Hiragino Kaku Gothic ProN', Meiryo, 'Microsoft YaHei', "Apple SD Gothic Neo", sans-serif;
+@font-default-zh: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+@font-default-zh-tw: Torus, Inter, 'Helvetica Neue', Tahoma, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Apple SD Gothic Neo', system-ui, sans-serif;
+
+@screen-mobile-max: (@screen-sm-min - 1px);
+@desktop: ~"(min-width: @{screen-sm-min})";
+@mobile: ~"(max-width: @{screen-mobile-max})";
+@narrow: ~"(max-width: 479px)";
+@narrow-up: ~"(min-width: 480px)";
+
+@highdpi: ~"(-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-resolution: 1.5dppx)";
+
+@hover-transition-duration: 120ms;
+
+@header-pinned: js-header-is-pinned;
+@header-pinned-animation-duration: 300ms;
+
+// update app-deps.ts when changing the height of the header.
+@nav2-avatar-height: 60px;
+@nav2-avatar-height--pinned : 40px;
+@nav2-height: 90px;
+@nav2-height--pinned: 50px;
+@nav2-header-height: 360px;
+@nav2-header-image-height: 310px;
+
+
+// mobile nav
+// TODO: un-bootstrap names
+@navbar-height: @nav2-height--pinned; // also in lib/app-deps.ts
+@navbar-padding-horizontal: 10px;
+@navbar-padding-vertical: 10px;
+@navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
+
+@bar-size: 3px;
+@logo-size: 100px;
+
+@md-paragraph-space: 1.5em;
+
+// ┐(ﾟ ヮﾟ)┌
+@gutter-v2: 10px;
+@gutter-v2-desktop: 50px;
+
+@gutter-sidebar-desktop: 30px;
+
+// here be z-indexes
+@z-index--header-bg: -1;
+
+@z-index--body-background: -1;
+
+@z-index--header-nav-v4-active: 1;
+@z-index--page-header: 1;
+@z-index--wiki-search: 1;
+
+@z-index--page-extra-tabs: 99;
+@z-index--simple-menu: 101;
+@z-index--simple-menu-hover-object: 102;
+@z-index--admin-menu: 499;
+@z-index--back-to-top: 500;
+@z-index--audio-player-floating: 501;
+@z-index--fixed-bar: 502;
+@z-index--nav-bar: 509;
+@z-index--blackout: 510;
+@z-index--nav-bar-mobile-active: 511;
+@z-index--blackout-visible: 512;
+@z-index--user-card-tooltip: 512;
+@z-index--nav-float: 999;
+// Xsolla overlay: 1000
+// navbar-static-top: 1000 (bootstrap nav for mobile)
+// modal-backdrop: 1040
+// modal: 1050
+@z-index--overlay: 9990;
+
+@box-shadow-x: 0;
+@box-shadow-y: 1px;
+@box-shadow-radius: 3px;
+@box-shadow-color: fade(#000, 25%);
+
+@header-container-min-height: @nav2-height + 70px;
+@header-title-height: 55px;
+
+// here be font-sizes
+@font-size--tiny: 8px;
+@font-size--small: 10px;
+@font-size--small-2: 11px;
+@font-size--normal: 12px;
+@font-size--normal-2: 13px;
+@font-size--title-small: 14px;
+@font-size--title-small-2: 15px;
+@font-size--title-small-3: 16px;
+@font-size--title-small-4: 18px;
+@font-size--large: 20px;
+@font-size--title: 24px;
+@font-size--large-2: 35px;
+@font-size--large-3: 40px;
+@font-size--large-4: 50px;
+@font-size--extra-large: 70px;
+
+@font-size--wiki: 14px;
+@font-size--wiki-search: 18px;
+
+@font-size--header-wiki-2: 26px;
+@font-size--header-wiki-3: @font-size--large;
+@font-size--header-wiki-4: @font-size--title-small-4;
+@font-size--header-wiki-5: @font-size--title-small-3;
+@font-size--header-wiki-6: @font-size--title-small;

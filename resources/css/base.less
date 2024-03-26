@@ -1,0 +1,84 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+// main: compiled.less
+@import "app";
+
+blockquote {
+  font-size: inherit;
+  border-left: 2px solid hsl(var(--hsl-c2));
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+  margin: 0 0 20px 0;
+}
+
+h2 {
+  font-weight: normal;
+  margin: 10px 0 0 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: @osu-colour-c1;
+}
+
+a {
+  .link-default();
+  outline-style: none;
+  &:link, &:visited, &:hover, &:active { outline-style: none; }
+
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+
+  transition: color 80ms linear;
+}
+
+code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border-radius: 0;
+}
+
+.clear {
+  clear: both;
+}
+
+.large {
+  font-size: 120%;
+}
+
+iframe {
+  border: none;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  margin: 2px 0 0;
+}
+
+a[disabled] { &:extend(.btn[disabled]); }
+
+.clickable-row { cursor: pointer; }
+
+[data-visibility] {
+  will-change: opacity;
+  transition: opacity 120ms;
+
+  &[data-visibility="hidden"] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &[data-visibility-animation="none"] {
+    will-change: unset;
+    transition: none;
+  }
+}

@@ -1,0 +1,56 @@
+// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the GNU Affero General Public License v3.0.
+// See the LICENCE file in the repository root for full licence text.
+
+// main: compiled.less
+@import "app";
+
+.t-section {
+  .u-section--bg-normal {
+    // the bar that shows the section we're currently in
+    background-color: @osu-colour-h1 !important;
+  }
+
+  .u-section--color-hover {
+    &:focus,
+    &:hover,
+    &:active {
+      color: @osu-colour-l1 !important;
+    }
+  }
+
+  .u-section--gradient-down {
+    // the parts after 50% are for the header size transition.
+
+    background-image: linear-gradient(
+      hsla(var(--hsl-h2), 0.9) 0%,
+      @osu-colour-h2 37.5%,
+      @osu-colour-h2 50%,
+      @osu-colour-h2 50%,
+      @osu-colour-h2 100%
+    );
+    background-size: 200% 200%;
+  }
+}
+
+.u-section--bg {
+  background-color: @osu-colour-h2;
+}
+
+.menu-colour(beatmaps, osu-colour-blue-1);
+.menu-colour(beatmapsets, osu-colour-blue-1);
+.menu-colour(community, osu-colour-pink-1);
+.menu-colour(error, osu-colour-pink-1);
+.menu-colour(help, osu-colour-orange-1);
+.menu-colour(home, osu-colour-purple-1);
+.menu-colour(multiplayer, osu-colour-pink-1);
+.menu-colour(rankings, osu-colour-green-1);
+.menu-colour(store, osu-colour-darkorange-1);
+
+
+.menu-colour(@section, @colour) {
+  .u-section-@{section}--before-bg-normal {
+    &::before {
+      background-color: @@colour !important;
+    }
+  }
+}
