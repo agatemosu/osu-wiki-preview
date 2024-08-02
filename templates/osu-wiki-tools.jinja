@@ -1,0 +1,45 @@
+{% extends "osu-page.jinja" %}
+{% set current_page = "wiki" %}
+{% set current_locale = "en" %}
+{% set title = "osu! wiki tools" %}
+{% set hue = 33 %}
+
+{% block header_buttons %}
+	<div class="header-buttons__item">
+		<a
+			class="btn-osu-big btn-osu-big--rounded-thin"
+			href="/wiki/{{ current_locale }}/{{ article_path }}"
+		>
+			Return
+		</a>
+	</div>
+
+	<div class="header-buttons__item">
+		<a class="btn-osu-big btn-osu-big--rounded-thin" href="?open">Open</a>
+	</div>
+
+	<div class="header-buttons__item">
+		<a
+			class="btn-osu-big btn-osu-big--rounded-thin"
+			href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ wiki_path }}"
+			title="Show on GitHub"
+		>
+			<i class="fab fa-github"></i>
+		</a>
+	</div>
+
+	{% include "lang-selector.jinja" %}
+{% endblock %}
+
+{% block content %}
+	<div class="osu-page osu-page--wiki">
+		<div class="wiki-page__content">
+			<div class="osu-md osu-md--wiki">
+				<pre><code>Current branch: <b>{{ current_branch }}</b></code></pre>
+				{% for result in results %}
+					<pre><code>{{ result }}</code></pre>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

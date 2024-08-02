@@ -1,0 +1,18 @@
+<div class="sidebar">
+	<button
+		type="button"
+		class="sidebar__mobile-toggle js-mobile-toggle"
+		data-mobile-toggle-target="wiki-toc"
+	>
+		<h2 class="sidebar__title">Contents</h2>
+		<div class="visible-xs sidebar__mobile-toggle-icon">
+			<i class="fas fa-chevron-down"></i>
+		</div>
+	</button>
+	<div
+		class="js-mobile-toggle hidden-xs sidebar__content"
+		data-mobile-toggle-id="wiki-toc"
+	>
+		{{ toc|safe }}
+	</div>
+</div>

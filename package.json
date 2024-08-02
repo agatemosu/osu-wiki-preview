@@ -8,20 +8,20 @@
 		"start": "webpack --mode development"
 	},
 	"dependencies": {
-		"@discordapp/twemoji": "^15.0.2",
-		"@fortawesome/fontawesome-free": "^6.5.1",
-		"autoprefixer": "^10.4.18",
+		"@discordapp/twemoji": "^15.0.3",
+		"@fortawesome/fontawesome-free": "^6.6.0",
 		"bootstrap": "^3.4.1",
-		"css-loader": "^6.10.0",
+		"css-loader": "^7.1.2",
 		"inter-ui": "^3.19.3",
 		"less": "^4.2.0",
 		"less-loader": "^12.2.0",
-		"mini-css-extract-plugin": "^2.8.1",
-		"postcss": "^8.4.35",
-		"postcss-loader": "^8.1.1",
+		"mini-css-extract-plugin": "^2.9.0",
 		"qtip2": "github:notbakaneko/qTip2#cd5f038667d2b23a44f4274c46de01834d704ce6",
-		"style-loader": "^3.3.4",
-		"webpack": "^5.90.3",
+		"webpack": "^5.93.0",
 		"webpack-cli": "^5.1.4"
+	},
+	"devDependencies": {
+		"prettier": "^3.3.3",
+		"prettier-plugin-jinja-template": "^1.4.1"
 	}
 }

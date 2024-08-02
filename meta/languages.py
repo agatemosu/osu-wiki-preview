@@ -23,7 +23,7 @@ locales_dict = {
     "no":    {"flag": "NO", "name": "Norsk"},
     "pl":    {"flag": "PL", "name": "Polski"},
     "pt":    {"flag": "PT", "name": "Português"},
-    "pt-br": {"flag": "BR", "name": "Português (Brasil)"},
+    "pt-br": {"flag": "BR", "name": "Português brasileiro"},
     "ro":    {"flag": "RO", "name": "Română"},
     "ru":    {"flag": "RU", "name": "Русский"},
     "sk":    {"flag": "SK", "name": "Slovenčina"},

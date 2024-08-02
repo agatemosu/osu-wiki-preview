@@ -1,4 +1,4 @@
-def process_console_output(output: str):
+def process_console_output(output: str) -> str:
     color_mapping = {
         "\x1b[0m": "</span>",
         "\x1b[2m": '<span style="color: darkgray;">',

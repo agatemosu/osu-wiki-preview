@@ -71,7 +71,7 @@ yarn run build
 Execute the following command to run the website:
 
 ```bash
-python app.py
+flask run
 ```
 
 Open your web browser and navigate to <http://localhost:5000/> to access the osu! wiki preview.

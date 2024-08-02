@@ -3,7 +3,7 @@ import os
 from meta.config import OSU_WIKI_PATH
 
 
-def list_tree(article):
+def list_tree(article) -> tuple[list[str], list[str]]:
     article_path = os.path.join(OSU_WIKI_PATH, "wiki", article)
 
     subdirectories = [

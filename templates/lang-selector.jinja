@@ -1,0 +1,48 @@
+<div class="header-buttons__item">
+	<a
+		class="btn-osu-big btn-osu-big--rounded-thin {% if available_langs %}js-click-menu{% endif %}"
+		data-click-menu-target="wiki-locales"
+	>
+		<span class="btn-osu-big__content">
+			<span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--left">
+				<span
+					class="flag-country flag-country--flat"
+					style="background-image: url('/assets/images/flags/{{ current_lang['flag'] }}.svg');"
+				></span>
+			</span>
+			{{ current_lang["name"] }}
+			{% if available_langs %}
+				<span class="btn-osu-big__icon-inline btn-osu-big__icon-inline--right">
+					<i class="fas fa-angle-down"></i>
+				</span>
+			{% endif %}
+		</span>
+	</a>
+
+	{% if available_langs %}
+		<div
+			class="simple-menu simple-menu--wiki-locales js-click-menu"
+			data-visibility="hidden"
+			data-click-menu-id="wiki-locales"
+		>
+			<div class="simple-menu__content">
+				{% for lang in available_langs %}
+					<a
+						class="simple-menu__item"
+						href="/wiki/{{ lang['locale'] }}/{{ article_path }}"
+					>
+						<span class="nav2-locale-item nav2-locale-item--no-padding">
+							<span class="nav2-locale-item__flag">
+								<span
+									class="flag-country flag-country--flat"
+									style="background-image: url('/assets/images/flags/{{ lang['flag'] }}.svg');"
+								></span>
+							</span>
+							{{ lang["name"] }}
+						</span>
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+</div>

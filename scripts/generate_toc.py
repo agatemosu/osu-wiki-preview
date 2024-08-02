@@ -1,9 +1,9 @@
 from bs4 import BeautifulSoup
 
-from functions.mdit_anchors import slugify
+from plugins.anchors import slugify
 
 
-def generate_toc(html):
+def generate_toc(html) -> str:
     soup = BeautifulSoup(html, "html.parser")
 
     toc = '<ol class="wiki-toc-list wiki-toc-list--top">'

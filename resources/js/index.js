@@ -2,17 +2,17 @@ import "../css/app.less";
 
 document.addEventListener("DOMContentLoaded", () => {
 	const menuToggleButtons = document.querySelectorAll(
-		"[data-click-menu-target]",
+		".js-click-menu[data-click-menu-target]",
 	);
 	const mobileToggleButtons = document.querySelectorAll(
-		"[data-mobile-toggle-target]",
+		".js-mobile-toggle[data-mobile-toggle-target]",
 	);
 	const blackoutElement = document.querySelector(".js-blackout");
 
 	function toggleClickMenu(button) {
 		const targetMenuId = button.getAttribute("data-click-menu-target");
 		const targetedMenu = document.querySelector(
-			`[data-click-menu-id="${targetMenuId}"]`,
+			`.js-click-menu[data-click-menu-id="${targetMenuId}"]`,
 		);
 
 		const isMenuVisible = targetedMenu.dataset.visibility === "visible";
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	function toggleMobileElement(button) {
 		const targetToggleId = button.getAttribute("data-mobile-toggle-target");
 		const targetedToggle = document.querySelector(
-			`[data-mobile-toggle-id="${targetToggleId}"]`,
+			`.js-mobile-toggle[data-mobile-toggle-id="${targetToggleId}"]`,
 		);
 
 		button.classList.toggle("js-mobile-toggle--active");
@@ -74,7 +74,10 @@ document.addEventListener("click", (event) => {
 		const activeBlackout = document.querySelector(
 			'.js-blackout[data-visibility="visible"]',
 		);
-		activeBlackout.dataset.visibility = "hidden";
+
+		if (activeBlackout) {
+			activeBlackout.dataset.visibility = "hidden";
+		}
 		document.body.classList.remove("js-nav2--active");
 	}
 });

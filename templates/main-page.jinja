@@ -1,0 +1,49 @@
+{% extends "osu-page.jinja" %}
+{% set current_page = "wiki" %}
+{% set title = "osu! wiki preview" %}
+{% set article_path = "Main_page" %}
+{% set hue = 45 %}
+
+{% block header_buttons %}
+	<div class="header-buttons__item">
+		<a
+			class="btn-osu-big btn-osu-big--rounded-thin"
+			href="/osu-wiki-tools/{{ wiki_path }}"
+		>
+			Check
+		</a>
+	</div>
+
+	<div class="header-buttons__item">
+		<a class="btn-osu-big btn-osu-big--rounded-thin" href="?open">Open</a>
+	</div>
+
+	<div class="header-buttons__item">
+		<a
+			class="btn-osu-big btn-osu-big--rounded-thin"
+			href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ wiki_path }}"
+			title="Show on GitHub"
+		>
+			<i class="fab fa-github"></i>
+		</a>
+	</div>
+
+	{% include "lang-selector.jinja" %}
+{% endblock %}
+
+{% block content %}
+	<div class="osu-page osu-page--wiki osu-page--wiki-main">
+		{% include "front-matter.jinja" %}
+
+		<div class="wiki-search">
+			<div class="wiki-search__bar">
+				<input class="wiki-search__input" placeholder="search..." />
+				<button class="wiki-search__button">
+					<i class="fa fa-search"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="wiki-main-page">{{ content|safe }}</div>
+	</div>
+{% endblock %}
