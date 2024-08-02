@@ -28,6 +28,68 @@
   position: relative;
   color: hsl(var(--hsl-c1));
 
+  &--forum-list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 5px;
+  }
+
+  &--forum-topic-moderation {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+    right: 0;
+    padding-left: @_padding-vertical;
+    padding-right: $padding-left;
+  }
+
+  &--forum-topic-watch {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+
+    // extends mouse hover area to cover margin-bottom
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 10px;
+    }
+  }
+
+  &--nav2 {
+    .own-layer();
+    will-change: transform, opacity;
+    transition: none;
+    position: relative;
+  }
+
+  &--nav2-left-aligned {
+    left: (-@_gutter + -@_item-padding-horizontal);
+  }
+
+  &--nav2-transparent {
+    --item-hover-bg: hsl(var(--hsl-b6));
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &--profile-page-bar {
+    margin-top: 5px;
+    top: 100%;
+    right: 0;
+    position: absolute;
+
+    @media @desktop {
+      right: auto;
+      left: 0;
+    }
+  }
+
   &--wiki-locales {
     position: absolute;
     top: 100%;
@@ -49,6 +111,19 @@
     display: flex;
     flex-direction: column;
 
+    .@{_top}--forum-topic-moderation & {
+      // hopefully 25px is enough to account for scrollbar (when exists)
+      max-width: calc(
+        100vw -
+          (2 * @forum-topic-nav-item--gutter + 2 * @_padding-vertical + 25px)
+      );
+      width: max-content;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, @btn-circle-diameter);
+      grid-template-rows: @btn-circle-diameter;
+      grid-gap: @forum-topic-nav-item--gutter * 2;
+    }
+
     .@{_top}--nav2 & {
       min-height: 100px;
       max-height: calc(100vh - (@nav2-height + @_padding-vertical * 2));
@@ -63,10 +138,54 @@
     }
   }
 
+  &__extra {
+    background-color: hsl(var(--hsl-b5));
+    display: flex;
+    flex-direction: column;
+    padding: @_padding-vertical @_gutter;
+    margin: -@_padding-vertical -@_gutter @_padding-vertical;
+  }
+
+  &__form {
+    margin: -@_padding-vertical -@_gutter;
+  }
+
+  &__header {
+    min-height: 100px;
+    margin: -@_padding-vertical -@_gutter @_padding-vertical;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden; // crop background-image
+
+    &::before {
+      .full-size();
+      content: "";
+      background-color: fade(#000, 50%);
+    }
+
+    &--link {
+      .link-plain();
+      .link-white();
+    }
+  }
+
+  &__header-icon {
+    width: 40px;
+    position: relative;
+    padding: 10px 0;
+  }
+
   &__item {
     .highlight-stripe() {
       &::before {
-        content: '';
+        content: "";
         border-radius: 10px;
         position: absolute;
         top: (@_item-padding-vertical + 2px);
@@ -104,5 +223,53 @@
     .@{_top}--nav2-locales & {
       width: 50%;
     }
+
+    .@{_top}--popup-menu-compact & {
+      display: flex;
+      align-items: center;
+      padding: @_gutter @_gutter * 2;
+
+      &::before {
+        display: none;
+      }
+
+      &--active {
+        background: @osu-colour-b5;
+
+        &:hover {
+          background: @osu-colour-b4;
+        }
+      }
+    }
+
+    &[disabled],
+    &--disabled {
+      color: #999;
+      // disable hover
+      pointer-events: none;
+    }
+  }
+
+  &__item-icon {
+    display: flex;
+    justify-content: center;
+
+    &--icon-dropdown-menu {
+      width: 22px;
+    }
+  }
+
+  &__item-loading-spinner {
+    opacity: 0;
+    will-change: opacity;
+    margin-left: 5px;
+
+    .js-forum-topic-watch-ajax--loading & {
+      opacity: 1;
+    }
+  }
+
+  &__label {
+    padding-left: 5px;
   }
 }

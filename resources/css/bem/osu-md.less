@@ -2,8 +2,6 @@
 // See the LICENCE file in the repository root for full licence text.
 
 .osu-md {
-  @_top: osu-md;
-
   .content-font();
   color: inherit;
   font-size: @font-size--wiki;
@@ -51,6 +49,55 @@
     margin-bottom: 0;
   }
 
+  &--chat {
+    --code-background-colour: hsl(var(--hsl-b3));
+    flex: 1;
+    overflow-wrap: anywhere;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: revert;
+      border-bottom: 1px solid hsl(var(--hsl-b3));
+    }
+  }
+
+  &--chat-action {
+    color: hsl(var(--hsl-l1));
+    font-style: italic;
+
+    &::before {
+      content: "* ";
+    }
+    &::after {
+      content: " *";
+    }
+  }
+
+  &--chat-plain {
+    p {
+      display: inline;
+    }
+  }
+
+  &--discussions {
+    font: inherit;
+    font-size: inherit;
+  }
+
+  &--group {
+    --paragraph-space: 10px;
+  }
+
+  &--news {
+    padding: 0;
+    color: @osu-colour-c1;
+    font-size: @font-size--wiki;
+  }
+
   &__figure-caption {
     margin-top: 5px;
     font-style: normal;
@@ -65,10 +112,6 @@
   &__figure-image {
     display: block;
     margin: 0 auto;
-
-    &--gallery {
-      cursor: pointer;
-    }
   }
 
   &__footnote-container {
@@ -79,7 +122,12 @@
     }
   }
 
-  &__header {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     .default-font();
     clear: both;
 
@@ -90,59 +138,59 @@
     &:first-child {
       margin-top: 0;
     }
-
-    &--1 {
-      margin-top: 40px;
-      font-weight: 600;
-
-      .@{_top}--wiki & {
-        margin-right: 0;
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid hsl(var(--hsl-b3));
-      }
-    }
-
-    &--2 {
-      font-size: @font-size--header-wiki-2;
-      font-weight: 600;
-      margin: 20px 0 10px;
-
-      .@{_top}--wiki & {
-        padding-bottom: 5px;
-        border-bottom: 1px solid hsl(var(--hsl-b3));
-      }
-    }
-
-    &--3 {
-      font-size: @font-size--header-wiki-3;
-      margin: 30px 0 10px;
-    }
-
-    &--4 {
-      font-size: @font-size--header-wiki-4;
-      margin: 30px 0 10px;
-    }
-
-    &--5 {
-      font-size: @font-size--header-wiki-5;
-      margin-top: 20px;
-    }
-
-    &--6 {
-      font-size: @font-size--header-wiki-6;
-      margin-top: 20px;
-    }
   }
 
-  &__infobox {
+  h1 {
+    margin-top: 40px;
+    font-weight: 600;
+  }
+
+  &--wiki h1 {
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid hsl(var(--hsl-b3));
+  }
+
+  h2 {
+    font-size: @font-size--header-wiki-2;
+    font-weight: 600;
+    margin: 20px 0 10px;
+  }
+
+  &--wiki h2 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid hsl(var(--hsl-b3));
+  }
+
+  h3 {
+    font-size: @font-size--header-wiki-3;
+    margin: 30px 0 10px;
+  }
+
+  h4 {
+    font-size: @font-size--header-wiki-4;
+    margin: 30px 0 10px;
+  }
+
+  h5 {
+    font-size: @font-size--header-wiki-5;
+    margin-top: 20px;
+  }
+
+  h6 {
+    font-size: @font-size--header-wiki-6;
+    margin-top: 20px;
+  }
+
+  .Infobox {
     padding: 10px;
     margin: var(--paragraph-space) 0;
     border: 1px solid hsl(var(--hsl-b4));
     .default-border-radius();
     text-align: center;
 
-    @media (min-width: 300px * 2 + @gutter-v2 * 2) {
+    @media (min-width: (300px * 2 + @gutter-v2 * 2)) {
       float: right;
       clear: right;
       width: 50%;
@@ -185,21 +233,17 @@
     }
   }
 
-  &__list {
+  ul,
+  ol {
     padding-left: 20px;
-
-    &--ordered {
-      list-style: none;
-      padding-left: 0;
-      counter-reset: c var(--list-start);
-    }
   }
 
-  &__list-item {
-    margin: 5px 0;
+  ol {
+    list-style: none;
+    padding-left: 0;
+    counter-reset: c var(--list-start);
 
-    .@{_top}__list--ordered > &,
-    .@{_top}__footnote-container & {
+    > li {
       counter-increment: c;
       display: flex;
 
@@ -210,7 +254,6 @@
         flex: none;
       }
 
-      // can't have class due to how it's rendered
       > div {
         flex: 1;
         min-width: 0;
@@ -218,16 +261,20 @@
     }
   }
 
-  &__paragraph {
-    margin-bottom: var(--paragraph-space);
-    line-height: 1.5;
+  li {
+    margin: 5px 0;
 
-    .@{_top}__list-item--footnote & {
+    &.osu-md__list-item--footnote p {
       margin-bottom: 0;
       flex: 1;
       min-width: 0;
       line-height: inherit;
     }
+  }
+
+  p {
+    margin-bottom: var(--paragraph-space);
+    line-height: 1.5;
   }
 
   // not actual table but its container
@@ -236,28 +283,17 @@
     margin-bottom: 20px;
   }
 
-  &__table-data {
+  td,
+  th {
     border-top: 1px solid @osu-colour-b4;
     padding: 5px;
     min-width: 30px;
+  }
 
-    &--center {
-      text-align: center;
-    }
-
-    &--header {
-      .default-font();
-      border-top: none;
-      border-bottom: 2px solid @osu-colour-b3;
-      font-weight: bold;
-    }
-
-    &--left {
-      text-align: left;
-    }
-
-    &--right {
-      text-align: right;
-    }
+  th {
+    .default-font();
+    border-top: none;
+    border-bottom: 2px solid @osu-colour-b3;
+    font-weight: bold;
   }
 }

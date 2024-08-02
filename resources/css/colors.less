@@ -31,11 +31,26 @@
 @green-dark: #668800;
 @green-darker: #445500;
 
-@red-lighter: #FFEDED;
-@red-light: #ED7887;
-@red: #ED1221;
-@red-dark: #BA0011;
+@red-lighter: #ffeded;
+@red-light: #ed7887;
+@red: #ed1221;
+@red-dark: #ba0011;
 @red-darker: #870000;
+
+// https://about.twitter.com/en/who-we-are/brand-toolkit
+@twitter-colour: #1d9bf0;
+// used the blue from the top bar on facebook, https://www.facebookbrand.com is useless and doesn't list colors
+@facebook-colour: #3b5998;
+// .sc-orange on https://soundcloud.com ¯\_(ツ)_/¯
+@soundcloud-colour: #f50;
+// bandcamp "green" from the provided buttons at https://bandcamp.com/buttons
+@bandcamp-colour: #61929c;
+// spotify "Green*" from https://developer.spotify.com/design/
+@spotify-colour: #1db954;
+// patreon orange from the provided logos at https://www.patreon.com/toolbox/media
+@patreon-colour: #e6461a;
+// youtube red from https://www.youtube.com/yt/brand/ (yes it's supposed to be rgb(255,0,0) - my poor eyes...)
+@youtube-colour: #ff0000;
 
 // just for reference, from bootstrap's variables.less
 // @gray-base:              #000;
@@ -45,10 +60,17 @@
 // @gray-light:             lighten(@gray-base, 46.7%); // #777
 // @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
+// TODO: remove after remaining white-background sections have been updated (forum, store)
+// osu!palette 2017(?)
+@gray: #262626;
+@gray-dark: #1a1a1a;
+@gray-darker: #0e0e0e;
+@light-gray: #f5f5f5;
+
 // osu!palette 2019v2-final-copy-last-FINAL
-// The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within :root
+// The default hue is osu! pink (333) and is injected into the body via master.blade.php as var(--base-hue) within body
 // The section-to-colour mapping is done via section_to_hue_map() in helpers.php
-:root {
+body {
   @base-colours: {
     // key: name
     // value: saturation, lightness
@@ -74,7 +96,7 @@
     b4: 10%, 20%;
     b5: 10%, 15%;
     b6: 10%, 10%;
-  }
+  };
 
   each(@base-colours, {
     --hsl-@{key}: var(--base-hue), @value;
@@ -106,7 +128,7 @@
 //
 // "Basic" Colour Theme (as of 2019)
 //
-:root {
+body {
   @colours: {
     // key: name
     // value: hue
@@ -118,7 +140,7 @@
     orange: 45;
     red: 360;
     darkorange: 20;
-  }
+  };
 
   --c-saturation-1: 100%;
   --c-saturation-2: 80%;
@@ -175,3 +197,15 @@
 @yellow-text: @yellow-darker;
 @purple-text: @purple-darker;
 @gray-text: @gray-darker;
+
+@link-gray-light: #ccc;
+@link-gray-light-hover: #eee;
+
+@group-colour-default: #0087ca;
+
+@colour-rank-d: #ff5858;
+@colour-rank-c: #ea7948;
+@colour-rank-b: #d99d03;
+@colour-rank-a: #72c904;
+@colour-rank-s: #0096a2;
+@colour-rank-ss: #be0089;

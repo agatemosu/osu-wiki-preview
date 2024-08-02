@@ -8,6 +8,12 @@
   display: flex;
   flex-direction: column;
 
+  &--user {
+    flex-direction: row;
+    align-items: center;
+    background-color: @osu-colour-b4;
+  }
+
   &__icon {
     width: @navbar-mobile--content-height;
     margin-right: 10px;
@@ -16,7 +22,24 @@
     // state changes at bottom
     &--closed {
       display: inline-block;
+
+      .@{_top}__main.js-click-menu--active > & {
+        display: none;
+      }
     }
+
+    &--opened {
+      display: none;
+
+      .@{_top}__main.js-click-menu--active > & {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__locale-flag {
+    display: inline-block;
+    margin-right: 5px;
   }
 
   &__main {
@@ -34,8 +57,40 @@
       color: @_colour-base;
     }
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
       color: @_colour-hover;
     }
+
+    &.js-click-menu--active {
+      color: @_colour-hover;
+    }
+  }
+
+  &__submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+
+    &.js-click-menu--active {
+      display: block;
+    }
+  }
+
+  &__submenu-item {
+    .link-plain();
+    display: flex;
+    align-items: center;
+    padding: 5px @navbar-padding-horizontal 5px
+      (@navbar-mobile--content-height + 30px);
+    color: @osu-colour-c2;
+
+    &:hover {
+      background-color: @osu-colour-b3;
+    }
+
+    .link-hover({
+      color: @osu-colour-c2;
+    });
   }
 }
