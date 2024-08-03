@@ -1,6 +1,12 @@
 import "../css/app.less";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", onPageLoad);
+
+document.addEventListener("click", onClick);
+
+document.addEventListener("scroll", onScroll);
+
+function onPageLoad() {
 	const menuToggleButtons = document.querySelectorAll(
 		".js-click-menu[data-click-menu-target]",
 	);
@@ -50,9 +56,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			toggleMobileElement(button);
 		});
 	}
-});
+}
 
-document.addEventListener("click", (event) => {
+function onClick(event) {
 	const isClickInsideMenu = event.target.closest("[data-click-menu-id]");
 
 	if (!isClickInsideMenu) {
@@ -80,8 +86,8 @@ document.addEventListener("click", (event) => {
 		}
 		document.body.classList.remove("js-nav2--active");
 	}
-});
+}
 
-document.addEventListener("scroll", () => {
+function onScroll() {
 	document.body.classList.toggle("js-header-is-pinned", window.scrollY > 30);
-});
+}
