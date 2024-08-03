@@ -20,7 +20,6 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    .at2x-fallback(--header-bg, "~@images/headers/generic.jpg");
 
     &::before {
       content: "";
@@ -38,84 +37,8 @@
       flex: none;
     }
 
-    .@{_top}--artists & {
-      .at2x-simple("~@images/headers/featured-artists.jpg");
-    }
-
-    .@{_top}--beatmappacks & {
-      .at2x-simple("~@images/headers/beatmappacks.jpg");
-    }
-
-    .@{_top}--changelog & {
-      .at2x-simple("~@images/headers/changelog.jpg");
-    }
-
-    .@{_top}--chat & {
-      .at2x-simple("~@images/headers/chat.jpg");
-      filter: hue-rotate(115deg); // fix colour
-
-      &::before {
-        filter: hue-rotate(-115deg); // undo the one in parent
-      }
-    }
-
-    .@{_top}--contests & {
-      .at2x-fallback(--header-bg, "~@images/headers/contest.jpg");
-    }
-
-    .@{_top}--forum & {
-      background-image: var(--forum-cover);
-
-      @media @highdpi {
-        background-image: var(--forum-cover-2x);
-      }
-    }
-
-    .@{_top}--forums-index & {
-      .at2x-simple("~@images/headers/forum-index.jpg");
-    }
-
     .@{_top}--help & {
       .at2x-simple("~@images/headers/wiki.jpg");
-    }
-
-    .@{_top}--mp-history & {
-      .at2x-simple("~@images/headers/mp-history.jpg");
-    }
-
-    .@{_top}--news & {
-      .at2x-simple("~@images/headers/news.png");
-    }
-
-    .@{_top}--password-reset & {
-      .at2x-simple("~@images/headers/password-reset.jpg");
-    }
-
-    .@{_top}--rankings & {
-      .at2x-simple("~@images/headers/rankings.jpg");
-    }
-
-    .@{_top}--search & {
-      .at2x-simple("~@images/headers/search.jpg");
-    }
-
-    .@{_top}--store & {
-      opacity: 0.7;
-      .at2x-simple("~@images/headers/store.png");
-    }
-
-    .@{_top}--supporter & {
-      opacity: 0.2;
-      .at2x-simple("~@images/headers/supporter.jpg");
-    }
-
-    .@{_top}--tournaments & {
-      .at2x-simple("~@images/headers/tournament-v2.jpg");
-    }
-
-    .@{_top}--users & {
-      opacity: 0.25;
-      filter: blur(50px);
     }
   }
 
@@ -132,19 +55,9 @@
     position: relative;
 
     &--main {
-      .large() {
-        @media @desktop {
-          min-height: 450px;
-        }
-      }
-
       @media @desktop {
         padding-top: @nav2-height + 15px;
         min-height: @header-container-min-height;
-      }
-
-      .@{_top}--supporter & {
-        .large();
       }
     }
   }
@@ -165,104 +78,8 @@
     flex: none;
     background-size: 75%;
 
-    .@{_top}--artist & {
-      background-image: url("~@images/icons/artists.svg");
-    }
-
-    .@{_top}--artists & {
-      background-image: url("~@images/icons/artists.svg");
-    }
-
-    .@{_top}--beatmappacks & {
-      background-image: url("~@images/icons/beatmappacks.svg");
-    }
-
-    .@{_top}--beatmapset & {
-      background-image: url("~@images/icons/beatmapsets.svg");
-    }
-
-    .@{_top}--beatmapsets & {
-      background-image: url("~@images/icons/beatmapsets.svg");
-    }
-
-    .@{_top}--changelog & {
-      background-image: url("~@images/icons/changelog.svg");
-    }
-
-    .@{_top}--chat & {
-      background-image: url("~@images/icons/chat.svg");
-    }
-
-    .@{_top}--comments & {
-      background-image: url("~@images/icons/chat.svg");
-    }
-
-    .@{_top}--contests & {
-      background-image: url("~@images/icons/contests.svg");
-    }
-
-    .@{_top}--error & {
-      background-image: url("~@images/icons/notifications.svg");
-    }
-
-    .@{_top}--forum & {
-      background-image: url("~@images/icons/forum.svg");
-    }
-
-    .@{_top}--forums-index & {
-      background-image: url("~@images/icons/forum.svg");
-    }
-
-    .@{_top}--friends & {
-      background-image: url("~@images/icons/friends.svg");
-    }
-
     .@{_top}--help & {
       background-image: url("~@images/icons/help.svg");
-    }
-
-    .@{_top}--home & {
-      background-image: url("~@images/icons/home.svg");
-    }
-
-    .@{_top}--livestreams & {
-      background-image: url("~@images/icons/forum.svg");
-    }
-
-    .@{_top}--news & {
-      background-image: url("~@images/icons/news.svg");
-    }
-
-    .@{_top}--notifications & {
-      background-image: url("~@images/icons/notifications.svg");
-    }
-
-    .@{_top}--password-reset & {
-      background-image: url("~@images/icons/settings.svg");
-    }
-
-    .@{_top}--rankings & {
-      background-image: url("~@images/icons/rankings.svg");
-    }
-
-    .@{_top}--search & {
-      background-image: url("~@images/icons/search.svg");
-    }
-
-    .@{_top}--settings & {
-      background-image: url("~@images/icons/settings.svg");
-    }
-
-    .@{_top}--store & {
-      background-image: url("~@images/icons/store.svg");
-    }
-
-    .@{_top}--tournaments & {
-      background-image: url("~@images/icons/tournaments.svg");
-    }
-
-    .@{_top}--users & {
-      background-image: url("~@images/icons/profile.svg");
     }
   }
 
@@ -285,13 +102,6 @@
       @media @desktop {
         font-size: @font-size--large;
         height: @header-title-height;
-      }
-    }
-
-    .@{_top}--beatmapset & {
-      @media @desktop {
-        padding-left: @gutter-beatmapset-desktop;
-        padding-right: $padding-left;
       }
     }
   }

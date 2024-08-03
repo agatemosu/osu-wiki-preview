@@ -55,53 +55,6 @@ code {
   border-radius: 0;
 }
 
-@font-face {
-  font-family: "FontAwesomeExtra";
-  src: url("~@fonts/extra/extra.eot?1280178");
-  src:
-    url("~@fonts/extra/extra.eot?1280178#iefix") format("embedded-opentype"),
-    url("~@fonts/extra/extra.woff2?1280178") format("woff2"),
-    url("~@fonts/extra/extra.woff?1280178") format("woff"),
-    url("~@fonts/extra/extra.ttf?1280178") format("truetype"),
-    url("~@fonts/extra/extra.svg?1280178#extra") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-.clear {
-  clear: both;
-}
-
-.large {
-  font-size: 120%;
-}
-
-.form-control {
-  .inset-box-shadow;
-  border-radius: @input-border-radius;
-  border: none;
-  font-size: 14px;
-
-  // otherwise missing shadow in iphone
-  &[type="text"],
-  &[type="password"] {
-    -webkit-appearance: none;
-  }
-
-  &:focus {
-    .inset-box-shadow;
-  }
-}
-
-select.form-control {
-  .default-box-shadow();
-  font-weight: 700;
-
-  &:focus {
-    .default-box-shadow();
-  }
-}
-
 iframe {
   border: none;
 }

@@ -66,34 +66,6 @@
     });
   }
 
-  &--account-edit {
-    min-width: @avatar-size--base;
-    padding: 7px 10px;
-    text-align: left;
-    overflow: hidden;
-    position: relative;
-  }
-
-  &--account-edit-small {
-    min-width: 70px;
-  }
-
-  &--artist-track-search {
-    --disabled-bg: hsl(var(--hsl-b2));
-  }
-
-  &--beatmapset-header {
-    min-width: 120px;
-    height: 45px;
-    margin: 0 5px 5px 0;
-  }
-
-  &--beatmapset-header-square {
-    width: 45px;
-    height: 45px;
-    margin: 0 5px 5px 0;
-  }
-
   &--comment-editor {
     min-width: 80px;
     border-radius: 10000px;
@@ -141,151 +113,6 @@
   &--danger {
     --bg: hsl(var(--hsl-red-3));
     --hover-bg: hsl(var(--hsl-red-2));
-  }
-
-  &--download-landing {
-    .default-box-shadow();
-    .default-text-shadow();
-    font-size: @font-size--title-small;
-    padding: 10px 5px;
-  }
-
-  &--download {
-    .default-box-shadow();
-    .default-border-radius();
-    .center-content();
-    transition: background-position 120ms;
-
-    flex: none;
-    min-width: 240px;
-    padding: 10px;
-    margin-bottom: 5px;
-    line-height: 1;
-    gap: 5px;
-
-    flex-direction: column;
-    --bg-colour: hsl(var(--hsl-blue-3));
-    --bg: var(--bg-colour) center/150% url("~@images/backgrounds/button.svg");
-    --hover-bg: var(--bg-colour) calc(50% - 20px) 50%/150%
-      url("~@images/backgrounds/button.svg");
-  }
-
-  &--download-lazer {
-    --bg-colour: hsl(var(--hsl-purple-3));
-  }
-
-  &--fileupload {
-    overflow: hidden;
-    position: relative;
-  }
-
-  &--mega {
-    width: 100%;
-    height: 50px;
-    font-size: 18px;
-    .center-content();
-  }
-
-  &--forum-button {
-    padding: 8px 15px;
-
-    border-radius: 10000px;
-    .default-text-shadow();
-    font-weight: normal;
-    // remove line descenders on <a>; should probably go on the block if
-    // the existing doesn't magically break.
-    vertical-align: middle;
-
-    --active-bg: hsl(var(--hsl-blue-3));
-    --bg: hsl(var(--hsl-blue-3));
-    --hover-bg: hsl(var(--hsl-blue-2));
-  }
-
-  &--forum-cover {
-    .default-text-shadow();
-    padding: 8px 15px;
-    border-radius: 100000px;
-    font-weight: normal;
-    position: relative;
-
-    --bg: hsl(var(--hsl-orange-3));
-    --colour: hsl(var(--hsl-c1));
-    --disabled-bg: hsl(var(--hsl-orange-3));
-    --disabled-colour: hsl(var(--hsl-c1));
-    --disabled-opacity: 0.5;
-    --hover-bg: hsl(var(--hsl-orange-2));
-  }
-
-  &--forum-cover-edit {
-    margin: 10px 15px;
-    min-width: 135px;
-  }
-
-  &--forum-primary {
-    border-radius: 10000px;
-    padding: 8px 20px;
-    font-weight: normal;
-    .default-text-shadow();
-
-    --bg: hsl(var(--hsl-lime-3));
-    --disabled-bg: hsl(var(--hsl-lime-3));
-    --disabled-colour: hsl(var(--hsl-c1));
-    --disabled-opacity: 0.5;
-    --hover-bg: hsl(var(--hsl-lime-2));
-  }
-
-  &--forum-reply {
-    margin: 0 3px;
-    border-radius: 10000px;
-    padding: 0 10px;
-    height: @btn-circle-diameter;
-    --bg: hsl(var(--hsl-l4));
-    --focus-bg: hsl(var(--hsl-l4));
-    --hover-bg: hsl(var(--hsl-l3));
-  }
-
-  &--forum-secondary {
-    border-radius: 10000px;
-    padding: 8px 20px;
-    font-weight: normal;
-    .default-text-shadow();
-
-    --bg: hsl(var(--hsl-blue-3));
-    --disabled-bg: hsl(var(--hsl-blue-3));
-    --disabled-colour: hsl(var(--hsl-c1));
-    --disabled-opacity: 0.5;
-    --hover-bg: hsl(var(--hsl-blue-2));
-  }
-
-  &--full {
-    width: 100%;
-  }
-
-  &--nav-popup {
-    text-align: left;
-    width: 120px;
-    height: 35px;
-    padding: 7px 10px;
-  }
-
-  &--password-reset {
-    padding: 10px;
-    text-align: center;
-  }
-
-  &--pink {
-    --bg: hsl(var(--hsl-pink-3));
-    --hover-bg: hsl(var(--hsl-pink-2));
-  }
-
-  &--quick-search-close {
-    .default-text-shadow();
-    border-radius: 10000px;
-    padding: 10px 30px;
-    font-size: @font-size--title-small-3;
-    line-height: normal;
-    flex: none;
-    margin-left: 20px;
   }
 
   &--rounded {
@@ -399,16 +226,6 @@
       justify-content: center;
     }
 
-    .@{top}--account-edit & {
-      width: auto;
-      margin: 0 -5px;
-    }
-
-    .@{top}--forum-reply & {
-      // aligned to my system
-      top: -1px;
-    }
-
     .@{top}--nav-popup & {
       width: auto;
       margin: 0 -5px;
@@ -419,38 +236,6 @@
     flex: none;
     margin: 0 5px;
     font-size: 150%;
-
-    .@{top}--account-edit & {
-      height: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .@{top}--comment-editor,
-    .@{top}--chat-send & {
-      font-size: 120%;
-    }
-
-    .@{top}--download-landing & {
-      .circle(40px);
-      .center-content();
-      .thick-box-shadow();
-      margin-left: 20px;
-      font-size: 20px;
-      border: 2px solid #fff;
-    }
-
-    .@{top}--nav-popup & {
-      height: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .@{top}--forum-reply & {
-      margin-right: 0;
-    }
   }
 
   &__icon-inline {
@@ -471,10 +256,6 @@
     flex-direction: column;
     justify-content: center;
     text-align: left;
-
-    .@{top}--beatmap-discussion-reply-open & {
-      margin-right: 20px;
-    }
   }
 
   &__loading-spinner {
