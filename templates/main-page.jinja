@@ -1,4 +1,4 @@
-{% extends "osu-page.jinja" %}
+{% extends "./layouts/osu-layout.jinja" %}
 {% set current_page = "wiki" %}
 {% set title = "osu! wiki preview" %}
 {% set article_path = "Main_page" %}
@@ -28,12 +28,12 @@
 		</a>
 	</div>
 
-	{% include "lang-selector.jinja" %}
+	{% include "./includes/lang-selector.jinja" %}
 {% endblock %}
 
 {% block content %}
 	<div class="osu-page osu-page--wiki osu-page--wiki-main">
-		{% include "front-matter.jinja" %}
+		{% include "./includes/front-matter.jinja" %}
 
 		<div class="wiki-search">
 			<div class="wiki-search__bar">

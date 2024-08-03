@@ -1,4 +1,4 @@
-{% extends "osu-page.jinja" %}
+{% extends "./layouts/osu-layout.jinja" %}
 {% set current_page = "wiki" %}
 {% set title = h1_content ~ " | osu! wiki preview" %}
 {% set hue = 45 %}
@@ -27,7 +27,7 @@
 		</a>
 	</div>
 
-	{% include "lang-selector.jinja" %}
+	{% include "./includes/lang-selector.jinja" %}
 {% endblock %}
 
 {% block content %}
@@ -37,10 +37,10 @@
 				<div style="margin-bottom: 10px; color: hsl(var(--hsl-orange-1))">
 					Current branch: <b>{{ current_branch }}</b>
 				</div>
-				{% include "sidebar.jinja" %}
+				{% include "./includes/sidebar.jinja" %}
 			</div>
 			<div class="wiki-page__content">
-				{% include "front-matter.jinja" %}
+				{% include "./includes/front-matter.jinja" %}
 				<div class="osu-md osu-md--wiki">{{ content|safe }}</div>
 			</div>
 		</div>
