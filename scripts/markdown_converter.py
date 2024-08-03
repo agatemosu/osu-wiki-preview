@@ -6,7 +6,7 @@ from markdown_it.renderer import RendererHTML
 from mdit_py_plugins import attrs, container, footnote, front_matter
 from wikitools import article_parser
 
-from plugins import anchors, figure, flag, osu_footnote
+from plugins import anchors, figure, flag, osu_footnote, osu_list
 from scripts.html_modify_content import modify_html_content
 
 
@@ -28,10 +28,15 @@ md = MarkdownIt("commonmark", renderer_cls=OsuRenderer)
 md.enable("table")
 
 md.use(front_matter.front_matter_plugin)
+
 md.use(container.container_plugin, "Infobox")
 md.use(figure.figure_plugin)
+
 md.use(footnote.footnote_plugin)
 md.use(osu_footnote.footnote_plugin)
+
+md.use(osu_list.osu_list_plugin)
+
 md.use(flag.flag_plugin)
 
 # https://osu.ppy.sh/wiki/en/Article_styling_criteria/Formatting#custom-identifiers
