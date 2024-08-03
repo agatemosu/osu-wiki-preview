@@ -1,3 +1,4 @@
+import tippy from "tippy.js";
 import "../css/app.less";
 
 document.addEventListener("DOMContentLoaded", onPageLoad);
@@ -13,6 +14,7 @@ function onPageLoad() {
 	const mobileToggleButtons = document.querySelectorAll(
 		".js-mobile-toggle[data-mobile-toggle-target]",
 	);
+	const elementsWithTitle = document.querySelectorAll("[title]");
 	const blackoutElement = document.querySelector(".js-blackout");
 
 	function toggleClickMenu(button) {
@@ -55,6 +57,16 @@ function onPageLoad() {
 		button.addEventListener("click", () => {
 			toggleMobileElement(button);
 		});
+	}
+
+	for (const element of elementsWithTitle) {
+		tippy(element, {
+			content: element.getAttribute("title"),
+			theme: "osu",
+			delay: 100,
+			duration: 200,
+		});
+		element.removeAttribute("title");
 	}
 }
 
