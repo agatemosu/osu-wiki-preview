@@ -16,7 +16,6 @@
 		"less": "^4.2.0",
 		"less-loader": "^12.2.0",
 		"mini-css-extract-plugin": "^2.9.0",
-		"qtip2": "github:notbakaneko/qTip2#cd5f038667d2b23a44f4274c46de01834d704ce6",
 		"webpack": "^5.93.0",
 		"webpack-cli": "^5.1.4"
 	},
