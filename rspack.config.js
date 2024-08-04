@@ -1,7 +1,10 @@
-const path = require("node:path");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// @ts-check
 
-module.exports = {
+import path from "node:path";
+import rspack from "@rspack/core";
+
+/** @type {rspack.Configuration} */
+const config = {
 	entry: "./resources/js/index.js",
 	output: {
 		filename: "main.js",
@@ -11,7 +14,11 @@ module.exports = {
 		rules: [
 			{
 				test: /\.less$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+				use: [
+					rspack.CssExtractRspackPlugin.loader,
+					"css-loader",
+					"less-loader",
+				],
 			},
 			{
 				generator: {
@@ -29,15 +36,20 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: "main.css",
-		}),
-	],
 	resolve: {
 		alias: {
 			"@fonts": path.resolve("../osu-web/resources/fonts"),
 			"@images": path.resolve("../osu-web/public/images"),
 		},
 	},
+	plugins: [
+		new rspack.CssExtractRspackPlugin({
+			filename: "main.css",
+		}),
+	],
+	experiments: {
+		css: false,
+	},
 };
+
+export default config;
