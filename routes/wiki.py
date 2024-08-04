@@ -3,14 +3,8 @@ import webbrowser
 
 import yaml
 from bs4 import BeautifulSoup
-from flask import (
-    Blueprint,
-    Response,
-    redirect,
-    render_template,
-    request,
-    send_from_directory,
-)
+from flask import Blueprint, redirect, render_template, request, send_from_directory
+from werkzeug import Response
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict

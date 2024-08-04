@@ -1,7 +1,8 @@
 import os
 import webbrowser
 
-from flask import Blueprint, Response, redirect, render_template, request
+from flask import Blueprint, redirect, render_template, request
+from werkzeug import Response
 
 from meta.config import OSU_WIKI_PATH
 from scripts.git_repo import get_branch_name, get_owner_name

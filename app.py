@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask, Response, redirect, request, send_from_directory
+from flask import Flask, redirect, request, send_from_directory
+from werkzeug import Response
 
 from meta.config import HOST
 from routes import wiki, wiki_tools
@@ -15,6 +16,8 @@ def remove_trailing_slash() -> Response | None:
     if request.path != "/" and request.path.endswith("/"):
         new_path = request.path.rstrip("/")
         return redirect(new_path)
+
+    return None
 
 
 @app.route("/")
