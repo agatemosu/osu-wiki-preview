@@ -31,7 +31,6 @@ def osu_wiki_tools(article: str, locale: str) -> Response | str:
         wiki_path=wiki_path,
         article_path=article,
         results=results,
-        current_locale=locale,
         current_lang=current_lang,
         header_items=[
             {"name": "osu-wiki-tools"},

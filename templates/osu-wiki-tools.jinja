@@ -1,6 +1,5 @@
 {% extends "./layouts/osu-layout.jinja" %}
 {% set current_page = "wiki" %}
-{% set current_locale = "en" %}
 {% set title = "osu! wiki tools" %}
 {% set hue = 33 %}
 
@@ -8,7 +7,7 @@
 	<div class="header-buttons__item">
 		<a
 			class="btn-osu-big btn-osu-big--rounded-thin"
-			href="/wiki/{{ current_locale }}/{{ article_path }}"
+			href="/wiki/{{ current_lang['locale'] }}/{{ article_path }}"
 		>
 			Return
 		</a>
