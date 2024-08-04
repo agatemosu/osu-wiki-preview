@@ -65,7 +65,7 @@ def wiki(article: str, locale: str = "") -> Response | str:
     parent_pages = os.path.dirname(article)
     header_items = [
         {"name": "index", "href": f"/wiki/{locale}/Main_page"},
-        {"name": article_title, "href": f"/wiki/{locale}/{article_path}"},
+        {"name": article_title, "href": f"/wiki/{locale}/{article}"},
     ]
 
     if parent_pages:
