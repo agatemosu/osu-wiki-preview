@@ -7,7 +7,7 @@ from werkzeug import Response
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
-from scripts.generate_toc import generate_toc
+from scripts.toc import generate_toc
 from scripts.get_article_title import get_article_title
 from scripts.git_repo import get_branch_name, get_owner_name
 from scripts.language_list import get_lang_info, get_lang_list
