@@ -4,16 +4,10 @@ from meta.config import OSU_WIKI_PATH
 from meta.languages import locales_dict
 
 
-def list_tree(article) -> tuple[list[str], list[str]]:
+def get_available_locales(article) -> list[str]:
     article_path = os.path.join(OSU_WIKI_PATH, "wiki", article)
 
-    subdirectories = [
-        subdir
-        for subdir in os.listdir(article_path)
-        if os.path.isdir(os.path.join(article_path, subdir))
-    ]
-
-    locales_available = [
+    available_locales = [
         locale
         for file in os.listdir(article_path)
         if file.endswith(".md")
@@ -23,4 +17,4 @@ def list_tree(article) -> tuple[list[str], list[str]]:
         and locale in locales_dict
     ]
 
-    return subdirectories, locales_available
+    return available_locales

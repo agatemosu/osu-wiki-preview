@@ -11,7 +11,7 @@ from scripts.generate_toc import generate_toc
 from scripts.get_article_title import get_article_title
 from scripts.git_repo import get_branch_name, get_owner_name
 from scripts.language_list import get_lang_info, get_lang_list
-from scripts.list_tree import list_tree
+from scripts.list_tree import get_available_locales
 from scripts.markdown_converter import convert_to_html, load_front_matter
 
 bp = Blueprint("wiki", __name__, url_prefix="/wiki")
@@ -50,9 +50,9 @@ def wiki(article: str, locale: str = "") -> Response | str:
         webbrowser.open(article_path)
         return redirect(request.path)
 
-    _, locales_available = list_tree(article)
+    available_locales = get_available_locales(article)
     current_lang = get_lang_info(locale)
-    available_langs = get_lang_list(locales_available)
+    available_langs = get_lang_list(available_locales)
 
     with open(article_path, encoding="utf-8") as file:
         markdown_content = file.read()
@@ -102,9 +102,9 @@ def main_page(locale: str, article: str = "Main_page") -> Response | str:
         webbrowser.open(article_path)
         return redirect(request.path)
 
-    _, locales_available = list_tree(article)
+    available_locales = get_available_locales(article)
     current_lang = get_lang_info(locale)
-    available_langs = get_lang_list(locales_available)
+    available_langs = get_lang_list(available_locales)
 
     with open(article_path, encoding="utf-8") as file:
         markdown_content = file.read()
