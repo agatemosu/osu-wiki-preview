@@ -1,0 +1,35 @@
+{% extends "./layouts/osu-layout.jinja" %}
+{% set current_page = "wiki" %}
+{% set title = "Not found | osu! wiki preview" %}
+{% set hue = 45 %}
+
+{% block header_buttons %}
+	<div class="header-buttons__item">
+		<a
+			class="btn-osu-big btn-osu-big--rounded-thin"
+			href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ wiki_path }}"
+			title="Show on GitHub"
+		>
+			<i class="fab fa-github"></i>
+		</a>
+	</div>
+
+	{% include "./includes/lang-selector.jinja" %}
+{% endblock %}
+
+{% block content %}
+	<div class="osu-page osu-page--wiki">
+		<div class="wiki-page">
+			<div class="wiki-page__toc">
+				<div style="margin-bottom: 10px; color: hsl(var(--hsl-orange-1))">
+					Current branch: <b>{{ current_branch }}</b>
+				</div>
+			</div>
+			<div class="wiki-page__content">
+				<div class="wiki-content">
+					<p>Requested page "{{ article_path }}" could not be found.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
