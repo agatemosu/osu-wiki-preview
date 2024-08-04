@@ -2,7 +2,7 @@
 
 import { $, $$ } from "./utils.js";
 
-const blackoutElement = $(".js-blackout");
+const blackoutElement = /** @type {HTMLElement} */ ($(".js-blackout"));
 
 /**
  * @param {HTMLElement} button
@@ -29,7 +29,6 @@ function toggleClickMenu(button) {
 		clickMenuTarget.style.display = isMenuVisible ? "none" : "block";
 
 		document.body.classList.toggle("js-nav2--active");
-		// @ts-ignore
 		blackoutElement.dataset.visibility = newVisibility;
 	}
 }
