@@ -5,7 +5,7 @@ from markdown_it.rules_core import StateCore
 
 def get_caption(image: Token) -> str:
     title = image.attrGet("title")
-    return title or image.content
+    return str(title or image.content)
 
 
 def figure(state: StateCore) -> None:
@@ -18,9 +18,12 @@ def figure(state: StateCore) -> None:
         if token.type != "inline":
             continue
 
+        if not token.children:
+            continue
+
         children_len = len(token.children)
 
-        if not token.children or (children_len != 1 and children_len != 3):
+        if children_len != 1 and children_len != 3:
             # children: image alone, or link_open -> image -> link_close
             continue
 
