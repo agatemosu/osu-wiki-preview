@@ -92,6 +92,9 @@ def wiki(article: str, locale: str = "") -> Response | str:
 
 @bp.route("/<locale>/Main_page")
 def main_page(locale: str, article: str = "Main_page") -> Response | str:
+    if locale not in locales_dict:
+        return redirect("/wiki/en/Main_page")
+
     wiki_path = f"wiki/{article}/{locale}.md"
     article_path = os.path.join(OSU_WIKI_PATH, wiki_path)
 
