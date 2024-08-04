@@ -1,8 +1,8 @@
-import git
+from git import Repo
 
 from meta.config import OSU_WIKI_PATH
 
-repo = git.Repo(OSU_WIKI_PATH)
+repo = Repo(OSU_WIKI_PATH)
 
 
 def get_branch_name() -> str:

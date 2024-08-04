@@ -11,7 +11,7 @@ app.register_blueprint(wiki_tools.bp)
 
 
 @app.before_request
-def remove_trailing_slash() -> Response:
+def remove_trailing_slash() -> Response | None:
     if request.path != "/" and request.path.endswith("/"):
         new_path = request.path.rstrip("/")
         return redirect(new_path)

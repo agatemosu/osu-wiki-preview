@@ -15,7 +15,7 @@ from flask import (
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
 from scripts.generate_toc import generate_toc
-from scripts.git import get_branch_name, get_owner_name
+from scripts.git_repo import get_branch_name, get_owner_name
 from scripts.language_list import get_lang_info, get_lang_list
 from scripts.list_tree import list_tree
 from scripts.markdown_converter import convert_to_html, load_front_matter

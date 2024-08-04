@@ -3,13 +3,13 @@ from bs4 import BeautifulSoup
 from plugins.anchors import slugify
 
 
-def generate_toc(html) -> str:
+def generate_toc(html: str) -> str:
     soup = BeautifulSoup(html, "html.parser")
 
     toc = '<ol class="wiki-toc-list wiki-toc-list--top">'
     current_level = 2
 
-    for tag in soup.find_all(["h2", "h3"]):
+    for tag in soup.select("h2, h3"):
         text = tag.get_text(strip=True)
         tag_id = tag.get("id") or slugify(text)
 

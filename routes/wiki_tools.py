@@ -4,7 +4,7 @@ import webbrowser
 from flask import Blueprint, Response, redirect, render_template, request
 
 from meta.config import OSU_WIKI_PATH
-from scripts.git import get_branch_name, get_owner_name
+from scripts.git_repo import get_branch_name, get_owner_name
 from scripts.language_list import get_lang_info
 from scripts.run_checks import run_checks
 
