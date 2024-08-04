@@ -2,13 +2,13 @@ import os
 import webbrowser
 
 import yaml
-from bs4 import BeautifulSoup
 from flask import Blueprint, redirect, render_template, request, send_from_directory
 from werkzeug import Response
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
 from scripts.generate_toc import generate_toc
+from scripts.get_article_title import get_article_title
 from scripts.git_repo import get_branch_name, get_owner_name
 from scripts.language_list import get_lang_info, get_lang_list
 from scripts.list_tree import list_tree
@@ -60,13 +60,12 @@ def wiki(article: str, locale: str = "") -> Response | str:
     html_content = convert_to_html(markdown_content, article, locale)
 
     # Get the first heading content
-    soup = BeautifulSoup(html_content, "html.parser")
-    h1_content = soup.find("h1").text
+    article_title = get_article_title(html_content, article)
 
     parent_pages = os.path.dirname(article)
     header_items = [
         {"name": "index", "href": f"/wiki/{locale}/Main_page"},
-        {"name": h1_content, "href": f"/wiki/{locale}/{article_path}"},
+        {"name": article_title, "href": f"/wiki/{locale}/{article_path}"},
     ]
 
     if parent_pages:
@@ -84,7 +83,7 @@ def wiki(article: str, locale: str = "") -> Response | str:
         current_branch=get_branch_name(),
         wiki_path=wiki_path,
         article_path=article,
-        h1_content=h1_content,
+        article_title=article_title,
         current_lang=current_lang,
         available_langs=available_langs,
         header_items=header_items,
