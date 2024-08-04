@@ -1,10 +1,6 @@
 const path = require("node:path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-function outputFilename(name, ext = "[ext]", hashType = "contenthash:8") {
-	return `${name}.[${hashType}]${ext}`;
-}
-
 module.exports = {
 	entry: "./resources/js/index.js",
 	output: {
@@ -19,14 +15,14 @@ module.exports = {
 			},
 			{
 				generator: {
-					filename: outputFilename("images/[name]"),
+					filename: "images/[name].[contenthash:8][ext]",
 				},
 				test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
 				type: "asset/resource",
 			},
 			{
 				generator: {
-					filename: outputFilename("fonts/[name]"),
+					filename: "fonts/[name].[contenthash:8][ext]",
 				},
 				test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
 				type: "asset/resource",
