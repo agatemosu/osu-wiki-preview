@@ -21,8 +21,8 @@
 	>
 		{%
 			set nav_items = [
-				{"name": "wiki",   "target": "_self",  "href": "/wiki/" ~ locale ~ "/Main_page"},
-				{"name": "news",   "target": "_self",  "href": "/wiki/" ~ locale ~ "/Main_page"},
+				{"name": "wiki",   "target": "_self",  "href": "/wiki/" ~ current_lang["locale"] ~ "/Main_page"},
+				{"name": "news",   "target": "_self",  "href": "/wiki/" ~ current_lang["locale"] ~ "/Main_page"},
 				{"name": "source", "target": "_blank", "href": "https://github.com/agatemosu/osu-wiki-preview"}
 			]
 		%}
