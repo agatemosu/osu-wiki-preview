@@ -130,6 +130,22 @@
 							{% endfor %}
 						</div>
 						<div class="nav2__colgroup nav2__colgroup--icons">
+							<div class="nav2__col nav2__col--notifications">
+								<div class="nav2__notification-container">
+									<a
+										class="nav-button nav-button--notifications js-click-menu"
+										data-click-menu-target="nav2-branch-notification-widget"
+									>
+										<span class="notification-icon notification-icon--glow">
+											<i class="fas fa-code-branch"></i>
+											<span class="notification-icon__count">
+												{{ repo_data["branch"] }}
+											</span>
+										</span>
+									</a>
+									{# Select branch #}
+								</div>
+							</div>
 							<div class="nav2__col nav2__col--avatar">
 								<a
 									class="avatar avatar--nav2 js-click-menu"

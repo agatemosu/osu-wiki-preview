@@ -33,12 +33,7 @@
 {% block content %}
 	<div class="osu-page osu-page--wiki">
 		<div class="wiki-page">
-			<div class="wiki-page__toc">
-				<div style="margin-bottom: 10px; color: hsl(var(--hsl-orange-1))">
-					Current branch: <b>{{ repo_data["branch"] }}</b>
-				</div>
-				{% include "./includes/sidebar.jinja" %}
-			</div>
+			<div class="wiki-page__toc">{% include "./includes/sidebar.jinja" %}</div>
 			<div class="wiki-page__content">
 				{% include "./includes/front-matter.jinja" %}
 				<div class="osu-md osu-md--wiki">{{ html_content|safe }}</div>
