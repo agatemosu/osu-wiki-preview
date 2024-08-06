@@ -8,7 +8,7 @@ from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
 from scripts.toc import generate_toc
 from scripts.get_article_title import get_article_title
-from scripts.git_repo import get_branch_name, get_owner_name
+from scripts.git_repo import repo_data
 from scripts.language_list import get_lang_info, get_lang_list
 from scripts.list_tree import get_available_locales
 from scripts.markdown_converter import convert_to_html, load_front_matter
@@ -16,14 +16,34 @@ from scripts.markdown_converter import convert_to_html, load_front_matter
 bp = Blueprint("wiki", __name__, url_prefix="/wiki")
 
 
-@bp.route("/<path:article>")
+async def serve_image(res: str, article: str):
+    if res in locales_dict:
+        return redirect(f"/wiki/{article}")
+
+    absolute_img_path = os.path.join(OSU_WIKI_PATH, "wiki", res, article)
+
+    img_dir = os.path.dirname(absolute_img_path)
+    img_filename = os.path.basename(absolute_img_path)
+
+    return await send_from_directory(img_dir, img_filename)
+
+
+@bp.route("/<res>")
+def any_path(res: str):
+    if res in locales_dict:
+        return redirect(f"/wiki/{res}/Main_page")
+
+    return redirect(f"/wiki/en/{res}")
+
+
 @bp.route("/<locale>/<path:article>")
-async def wiki(article: str, locale: str | None = None):
-    # Redirect if no locale is specified
-    if not locale:
-        return redirect(f"/wiki/en/{article}")
+async def wiki(locale: str, article: str):
+    # Serve images as static image files
+    if article.endswith((".png", ".jpg", ".jpeg", ".gif", ".svg")):
+        return await serve_image(locale, article)
+
     # Redirect if part of the path to the article is taken as locale
-    elif locale not in locales_dict:
+    if locale not in locales_dict:
         return redirect(f"/wiki/en/{locale}/{article}")
 
     # Redirect old routes
@@ -34,89 +54,71 @@ async def wiki(article: str, locale: str | None = None):
         new_path = redirect_mappings[article.lower()]
         return redirect(f"/wiki/{locale}/{new_path}")
 
-    # Serve images as static image files
-    if article.endswith((".png", ".jpg", ".jpeg", ".gif", ".svg")):
-        file_name = os.path.basename(article)
-        img_path = os.path.join(OSU_WIKI_PATH, "wiki", os.path.dirname(article))
-
-        return await send_from_directory(img_path, file_name)
-
     # Get the link for GitHub and the article path in this computer
-    wiki_path = f"wiki/{article}/{locale}.md"
-    article_path = os.path.join(OSU_WIKI_PATH, wiki_path)
+    relative_wiki_path = f"wiki/{article}/{locale}.md"
+    absolute_article_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
 
     if "open" in request.args:
-        webbrowser.open(article_path)
+        file_path = os.path.realpath(absolute_article_path)
+        webbrowser.open(file_path)
         return redirect(request.path)
+
+    with open(absolute_article_path, encoding="utf-8") as file:
+        markdown_content = file.read()
 
     available_locales = get_available_locales(article)
     current_lang = get_lang_info(locale)
     available_langs = get_lang_list(available_locales)
 
-    with open(article_path, encoding="utf-8") as file:
-        markdown_content = file.read()
-
+    front_matter = load_front_matter(markdown_content)
     html_content = convert_to_html(markdown_content, article, locale)
+
+    header_items = [{"name": "index", "href": f"/wiki/{locale}/Main_page"}]
+
+    if front_matter.get("layout") == "main_page":
+        header_items.append({"name": repo_data["branch"]})
+
+        return await render_template(
+            "main-page.jinja",
+            html_content=html_content,
+            front_matter=front_matter,
+            article_path=article,
+            relative_wiki_path=relative_wiki_path,
+            current_lang=current_lang,
+            available_langs=available_langs,
+            header_items=header_items,
+            repo_data=repo_data,
+        )
 
     # Get the first heading content
     article_title = get_article_title(html_content, article)
+    toc = generate_toc(html_content)
 
     parent_pages = os.path.dirname(article)
-    header_items = [
-        {"name": "index", "href": f"/wiki/{locale}/Main_page"},
-        {"name": article_title, "href": f"/wiki/{locale}/{article}"},
-    ]
-
     if parent_pages:
-        header_items.insert(
-            1,
-            {"name": parent_pages, "href": f"/wiki/{locale}/{parent_pages}"},
+        last_parent = parent_pages.split("/")[-1]
+
+        header_items.append(
+            {
+                "name": last_parent.replace("_", " "),
+                "href": f"/wiki/{locale}/{parent_pages}",
+            },
         )
+
+    header_items.append(
+        {"name": article_title, "href": f"/wiki/{locale}/{article}"},
+    )
 
     return await render_template(
         "wiki.jinja",
-        content=html_content,
-        front_matter=load_front_matter(markdown_content),
-        toc=generate_toc(html_content),
-        repository_owner=get_owner_name(),
-        current_branch=get_branch_name(),
-        wiki_path=wiki_path,
-        article_path=article,
+        html_content=html_content,
+        front_matter=front_matter,
         article_title=article_title,
+        article_path=article,
+        toc=toc,
+        relative_wiki_path=relative_wiki_path,
         current_lang=current_lang,
         available_langs=available_langs,
+        repo_data=repo_data,
         header_items=header_items,
-    )
-
-
-@bp.route("/<locale>/Main_page")
-async def main_page(locale: str, article: str = "Main_page"):
-    if locale not in locales_dict:
-        return redirect("/wiki/en/Main_page")
-
-    wiki_path = f"wiki/{article}/{locale}.md"
-    article_path = os.path.join(OSU_WIKI_PATH, wiki_path)
-
-    if "open" in request.args:
-        webbrowser.open(article_path)
-        return redirect(request.path)
-
-    available_locales = get_available_locales(article)
-    current_lang = get_lang_info(locale)
-    available_langs = get_lang_list(available_locales)
-
-    with open(article_path, encoding="utf-8") as file:
-        markdown_content = file.read()
-
-    html_content = convert_to_html(markdown_content, article, locale)
-
-    return await render_template(
-        "main-page.jinja",
-        content=html_content,
-        front_matter=load_front_matter(markdown_content),
-        repository_owner=get_owner_name(),
-        wiki_path=wiki_path,
-        current_lang=current_lang,
-        available_langs=available_langs,
-        header_items=[{"name": f"index (on branch <b>{get_branch_name()}</b>)"}],
     )

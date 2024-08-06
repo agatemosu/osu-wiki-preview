@@ -1,14 +1,13 @@
 {% extends "./layouts/osu-layout.jinja" %}
 {% set current_page = "wiki" %}
 {% set title = "osu! wiki preview" %}
-{% set article_path = "Main_page" %}
 {% set hue = 45 %}
 
 {% block header_buttons %}
 	<div class="header-buttons__item">
 		<a
 			class="btn-osu-big btn-osu-big--rounded-thin"
-			href="/osu-wiki-tools/{{ wiki_path }}"
+			href="/osu-wiki-tools/{{ relative_wiki_path }}"
 		>
 			Check
 		</a>
@@ -21,7 +20,7 @@
 	<div class="header-buttons__item">
 		<a
 			class="btn-osu-big btn-osu-big--rounded-thin"
-			href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ wiki_path }}"
+			href="https://github.com/{{ repo_data['owner'] }}/osu-wiki/blob/master/{{ relative_wiki_path }}"
 			title="Show on GitHub"
 		>
 			<i class="fab fa-github"></i>
@@ -44,6 +43,6 @@
 			</div>
 		</div>
 
-		<div class="wiki-main-page">{{ content|safe }}</div>
+		<div class="wiki-main-page">{{ html_content|safe }}</div>
 	</div>
 {% endblock %}

@@ -4,10 +4,10 @@ from meta.config import OSU_WIKI_PATH
 from scripts.process_console_output import process_console_output
 
 
-def run_checks(wiki_path: str) -> list[str]:
+def run_checks(relative_wiki_path: str) -> list[str]:
     params = [
-        ["osu-wiki-tools", "check-links", "--target", wiki_path],
-        ["osu-wiki-tools", "check-yaml", "--target", wiki_path],
+        ["osu-wiki-tools", "check-links", "--target", relative_wiki_path],
+        ["osu-wiki-tools", "check-yaml", "--target", relative_wiki_path],
     ]
 
     try:

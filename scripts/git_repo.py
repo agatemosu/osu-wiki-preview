@@ -17,3 +17,6 @@ def get_owner_name() -> str:
     owner = remote_url.split("/")[-2]
 
     return owner
+
+
+repo_data = {"branch": get_branch_name(), "owner": get_owner_name()}

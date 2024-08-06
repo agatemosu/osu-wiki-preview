@@ -7,7 +7,7 @@
 	<div class="header-buttons__item">
 		<a
 			class="btn-osu-big btn-osu-big--rounded-thin"
-			href="https://github.com/{{ repository_owner }}/osu-wiki/blob/master/{{ wiki_path }}"
+			href="https://github.com/{{ repo_data['owner'] }}/osu-wiki/blob/master/{{ relative_wiki_path }}"
 			title="Show on GitHub"
 		>
 			<i class="fab fa-github"></i>
@@ -22,7 +22,7 @@
 		<div class="wiki-page">
 			<div class="wiki-page__toc">
 				<div style="margin-bottom: 10px; color: hsl(var(--hsl-orange-1))">
-					Current branch: <b>{{ current_branch }}</b>
+					Current branch: <b>{{ repo_data["branch"] }}</b>
 				</div>
 			</div>
 			<div class="wiki-page__content">
