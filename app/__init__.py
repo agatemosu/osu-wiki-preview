@@ -4,7 +4,7 @@ from quart import Quart, redirect, request, send_from_directory
 
 from app.routes import wiki, wiki_tools
 
-app = Quart(__name__)
+app = Quart(__name__, template_folder="../templates")
 app.register_blueprint(wiki.bp)
 app.register_blueprint(wiki_tools.bp)
 
