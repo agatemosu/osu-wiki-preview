@@ -1,6 +1,6 @@
 from git import Repo
 
-from meta.config import OSU_WIKI_PATH
+from app.meta.config import OSU_WIKI_PATH
 
 repo = Repo(OSU_WIKI_PATH)
 

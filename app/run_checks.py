@@ -1,6 +1,6 @@
 import subprocess
 
-from meta.config import OSU_WIKI_PATH
+from app.meta.config import OSU_WIKI_PATH
 from app.process_console_output import process_console_output
 
 

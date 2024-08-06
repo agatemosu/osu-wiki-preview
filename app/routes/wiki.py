@@ -4,8 +4,8 @@ import webbrowser
 import yaml
 from quart import Blueprint, redirect, render_template, request, send_from_directory
 
-from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
-from meta.languages import locales_dict
+from app.meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
+from app.meta.languages import locales_dict
 from app.get_article_title import get_article_title
 from app.git_repo import repo_data
 from app.language_list import get_lang_info, get_lang_list

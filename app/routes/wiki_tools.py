@@ -3,7 +3,7 @@ import webbrowser
 
 from quart import Blueprint, redirect, render_template, request
 
-from meta.config import OSU_WIKI_PATH
+from app.meta.config import OSU_WIKI_PATH
 from app.git_repo import repo_data
 from app.language_list import get_lang_info
 from app.run_checks import run_checks

@@ -6,7 +6,7 @@ from markdown_it.renderer import RendererHTML
 from mdit_py_plugins import attrs, container, footnote, front_matter
 from wikitools import article_parser
 
-from plugins import anchors, figure, flag, osu_footnote, osu_list
+from app.plugins import anchors, figure, flag, osu_footnote, osu_list
 from app.html_modify_content import modify_html_content
 
 

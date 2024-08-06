@@ -1,7 +1,7 @@
 import os
 
-from meta.config import OSU_WIKI_PATH
-from meta.languages import locales_dict
+from app.meta.config import OSU_WIKI_PATH
+from app.meta.languages import locales_dict
 
 
 def get_available_locales(article) -> list[str]:

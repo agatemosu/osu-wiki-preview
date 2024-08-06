@@ -1,6 +1,6 @@
 from markdown_it import MarkdownIt
-from markdown_it.token import Token
 from markdown_it.rules_core import StateCore
+from markdown_it.token import Token
 
 
 def get_caption(image: Token) -> str:

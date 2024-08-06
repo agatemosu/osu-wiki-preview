@@ -11,7 +11,7 @@ def osu_ordered_list(state: StateCore) -> None:
         start = 0
 
         if start_attr is not None:
-            start = start_attr - 1
+            start = int(start_attr) - 1
             token.attrs.pop("start")
 
         token.attrSet("style", f"--list-start: {start}")
