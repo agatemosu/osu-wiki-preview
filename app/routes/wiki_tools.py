@@ -26,7 +26,7 @@ async def osu_wiki_tools(article: str, locale: str):
     return await render_template(
         "osu-wiki-tools.jinja",
         relative_wiki_path=relative_wiki_path,
-        article_path=article,
+        article=article,
         results=results,
         current_lang=current_lang,
         header_items=[

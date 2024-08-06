@@ -66,7 +66,7 @@ async def wiki(locale: str, article: str):
 
         return await render_template(
             "not-found.jinja",
-            article_path=article,
+            article=article,
             relative_wiki_path=relative_wiki_path,
             current_lang=current_lang,
             header_items=header_items,
@@ -93,7 +93,7 @@ async def wiki(locale: str, article: str):
             "main-page.jinja",
             html_content=html_content,
             front_matter=front_matter,
-            article_path=article,
+            article=article,
             relative_wiki_path=relative_wiki_path,
             current_lang=current_lang,
             available_langs=available_langs,
@@ -125,7 +125,7 @@ async def wiki(locale: str, article: str):
         html_content=html_content,
         front_matter=front_matter,
         article_title=article_title,
-        article_path=article,
+        article=article,
         toc=toc,
         relative_wiki_path=relative_wiki_path,
         current_lang=current_lang,
