@@ -4,13 +4,13 @@ import webbrowser
 import yaml
 from quart import Blueprint, redirect, render_template, request, send_from_directory
 
-from app.meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
-from app.meta.languages import locales_dict
 from app.get_article_title import get_article_title
 from app.git_repo import repo_data
 from app.language_list import get_lang_info, get_lang_list
 from app.list_tree import get_available_locales
 from app.markdown_converter import convert_to_html, load_front_matter
+from app.meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
+from app.meta.languages import locales_dict
 from app.toc import generate_toc
 
 bp = Blueprint("wiki", __name__, url_prefix="/wiki")
