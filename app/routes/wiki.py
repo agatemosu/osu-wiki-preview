@@ -29,7 +29,7 @@ async def serve_image(res: str, article: str):
 
 
 @bp.route("/<res>")
-def any_path(res: str):
+def redirect_missing_paths(res: str):
     if res in locales_dict:
         return redirect(f"/wiki/{res}/Main_page")
 
@@ -58,6 +58,21 @@ async def wiki(locale: str, article: str):
     relative_wiki_path = f"wiki/{article}/{locale}.md"
     absolute_article_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
 
+    current_lang = get_lang_info(locale)
+    header_items = [{"name": "index", "href": f"/wiki/{locale}/Main_page"}]
+
+    if not os.path.isfile(absolute_article_path):
+        header_items.append({"name": "Not found"})
+
+        return await render_template(
+            "not-found.jinja",
+            article_path=article,
+            relative_wiki_path=relative_wiki_path,
+            current_lang=current_lang,
+            header_items=header_items,
+            repo_data=repo_data,
+        )
+
     if "open" in request.args:
         webbrowser.open(absolute_article_path)
         return redirect(request.path)
@@ -66,13 +81,10 @@ async def wiki(locale: str, article: str):
         markdown_content = file.read()
 
     available_locales = get_available_locales(article)
-    current_lang = get_lang_info(locale)
     available_langs = get_lang_list(available_locales)
 
     front_matter = load_front_matter(markdown_content)
     html_content = convert_to_html(markdown_content, article, locale)
-
-    header_items = [{"name": "index", "href": f"/wiki/{locale}/Main_page"}]
 
     if front_matter.get("layout") == "main_page":
         header_items.append({"name": repo_data["branch"]})
