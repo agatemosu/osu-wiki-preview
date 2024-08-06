@@ -6,12 +6,12 @@ from quart import Blueprint, redirect, render_template, request, send_from_direc
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
-from scripts.toc import generate_toc
 from scripts.get_article_title import get_article_title
 from scripts.git_repo import repo_data
 from scripts.language_list import get_lang_info, get_lang_list
 from scripts.list_tree import get_available_locales
 from scripts.markdown_converter import convert_to_html, load_front_matter
+from scripts.toc import generate_toc
 
 bp = Blueprint("wiki", __name__, url_prefix="/wiki")
 
