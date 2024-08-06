@@ -66,20 +66,41 @@ def get_toc(html: str) -> Toc:
     return toc
 
 
+def ul(classlist: list[str]) -> str:
+    classname = " ".join(classlist)
+    return f'<ul class="{classname}">'
+
+
+def link(item: TocItem, classlist: list[str]) -> str:
+    classname = " ".join(classlist)
+    return f'<a href="#{item.id}" class="{classname}">{item.text}</a>'
+
+
 def create_toc_html(
     items: Union[Toc, LevelWithSubItems],
-    top: bool,
+    top: bool = True,
 ) -> str:
-    html = f'<ul class="wiki-toc-list {"wiki-toc-list--top" if top else ""}">'
+    ul_classlist = ["wiki-toc-list"]
+    if top:
+        ul_classlist.append("wiki-toc-list--top")
+
+    html = ul(ul_classlist)
     for item in items:
+        html += '<li class="wiki-toc-list__item">'
+
+        link_classlist = ["wiki-toc-list__link"]
+        if not top:
+            link_classlist.append("wiki-toc-list__link--small")
+
         if isinstance(item, TocItem):
-            html += f'<li class="wiki-toc-list__item"><a href="#{item.id}" class="wiki-toc-list__link {"wiki-toc-list__link--small" if not top else ""}">{item.text}</a></li>'
+            html += link(item, link_classlist)
 
         elif isinstance(item, tuple):
             main_item, sub_items = item
-            html += f'<li class="wiki-toc-list__item"><a href="#{main_item.id}" class="wiki-toc-list__link">{main_item.text}</a>'
+            html += link(main_item, link_classlist)
             html += create_toc_html(sub_items, False)
-            html += "</li>"
+
+        html += "</li>"
 
     html += "</ul>"
     return html
@@ -87,6 +108,6 @@ def create_toc_html(
 
 def generate_toc(html: str) -> str:
     toc = get_toc(html)
-    toc_html = create_toc_html(toc, True)
+    toc_html = create_toc_html(toc)
 
     return toc_html
