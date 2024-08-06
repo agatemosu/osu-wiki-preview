@@ -69,17 +69,16 @@ def get_toc(html: str) -> Toc:
 def create_toc_html(
     items: Union[Toc, LevelWithSubItems],
     top: bool,
-    small: bool,
 ) -> str:
     html = f'<ul class="wiki-toc-list {"wiki-toc-list--top" if top else ""}">'
     for item in items:
         if isinstance(item, TocItem):
-            html += f'<li class="wiki-toc-list__item"><a href="#{item.id}" class="wiki-toc-list__link {"wiki-toc-list__link--small" if small else ""}">{item.text}</a></li>'
+            html += f'<li class="wiki-toc-list__item"><a href="#{item.id}" class="wiki-toc-list__link {"wiki-toc-list__link--small" if not top else ""}">{item.text}</a></li>'
 
         elif isinstance(item, tuple):
             main_item, sub_items = item
             html += f'<li class="wiki-toc-list__item"><a href="#{main_item.id}" class="wiki-toc-list__link">{main_item.text}</a>'
-            html += create_toc_html(sub_items, False, True)
+            html += create_toc_html(sub_items, False)
             html += "</li>"
 
     html += "</ul>"
@@ -88,6 +87,6 @@ def create_toc_html(
 
 def generate_toc(html: str) -> str:
     toc = get_toc(html)
-    toc_html = create_toc_html(toc, True, False)
+    toc_html = create_toc_html(toc, True)
 
     return toc_html
