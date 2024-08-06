@@ -6,12 +6,12 @@ from quart import Blueprint, redirect, render_template, request, send_from_direc
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
-from scripts.get_article_title import get_article_title
-from scripts.git_repo import repo_data
-from scripts.language_list import get_lang_info, get_lang_list
-from scripts.list_tree import get_available_locales
-from scripts.markdown_converter import convert_to_html, load_front_matter
-from scripts.toc import generate_toc
+from app.get_article_title import get_article_title
+from app.git_repo import repo_data
+from app.language_list import get_lang_info, get_lang_list
+from app.list_tree import get_available_locales
+from app.markdown_converter import convert_to_html, load_front_matter
+from app.toc import generate_toc
 
 bp = Blueprint("wiki", __name__, url_prefix="/wiki")
 
@@ -59,8 +59,7 @@ async def wiki(locale: str, article: str):
     absolute_article_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
 
     if "open" in request.args:
-        file_path = os.path.realpath(absolute_article_path)
-        webbrowser.open(file_path)
+        webbrowser.open(absolute_article_path)
         return redirect(request.path)
 
     with open(absolute_article_path, encoding="utf-8") as file:

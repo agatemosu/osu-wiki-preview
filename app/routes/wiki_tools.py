@@ -4,9 +4,9 @@ import webbrowser
 from quart import Blueprint, redirect, render_template, request
 
 from meta.config import OSU_WIKI_PATH
-from scripts.git_repo import repo_data
-from scripts.language_list import get_lang_info
-from scripts.run_checks import run_checks
+from app.git_repo import repo_data
+from app.language_list import get_lang_info
+from app.run_checks import run_checks
 
 bp = Blueprint("osu-wiki-tools", __name__, url_prefix="/osu-wiki-tools")
 

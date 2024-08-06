@@ -1,7 +1,7 @@
 import subprocess
 
 from meta.config import OSU_WIKI_PATH
-from scripts.process_console_output import process_console_output
+from app.process_console_output import process_console_output
 
 
 def run_checks(relative_wiki_path: str) -> list[str]:

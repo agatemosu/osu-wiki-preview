@@ -3,7 +3,7 @@ import re
 from markdown_it import MarkdownIt
 from markdown_it.rules_inline import StateInline
 
-from scripts.get_flag_codepoint import get_flag_codepoint
+from app.get_flag_codepoint import get_flag_codepoint
 
 
 def get_flag_url(flagCodepoint: str) -> str:

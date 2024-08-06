@@ -2,8 +2,7 @@ import os
 
 from quart import Quart, redirect, request, send_from_directory
 
-from meta.config import HOST
-from routes import wiki, wiki_tools
+from app.routes import wiki, wiki_tools
 
 app = Quart(__name__)
 app.register_blueprint(wiki.bp)
@@ -36,7 +35,3 @@ async def serve_flag(code: str):
         flag_file = "fallback.svg"
 
     return await send_from_directory(flag_dir, flag_file)
-
-
-if __name__ == "__main__":
-    app.run(debug=True, host=HOST)

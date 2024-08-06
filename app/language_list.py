@@ -1,4 +1,4 @@
-from scripts.get_flag_codepoint import get_flag_codepoint
+from app.get_flag_codepoint import get_flag_codepoint
 from meta.languages import locales_dict
 
 
