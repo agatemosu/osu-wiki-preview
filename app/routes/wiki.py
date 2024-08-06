@@ -5,7 +5,7 @@ import yaml
 from quart import Blueprint, redirect, render_template, request, send_from_directory
 
 from app.get_article_title import get_article_title
-from app.git_repo import repo_data
+from app.git_repo import get_branch_name
 from app.language_list import get_lang_info, get_lang_list
 from app.list_tree import get_available_locales
 from app.markdown_converter import convert_to_html, load_front_matter
@@ -70,7 +70,6 @@ async def wiki(locale: str, article: str):
             relative_wiki_path=relative_wiki_path,
             current_lang=current_lang,
             header_items=header_items,
-            repo_data=repo_data,
         )
 
     if "open" in request.args:
@@ -87,7 +86,7 @@ async def wiki(locale: str, article: str):
     html_content = convert_to_html(markdown_content, article, locale)
 
     if front_matter.get("layout") == "main_page":
-        header_items.append({"name": repo_data["branch"]})
+        header_items.append({"name": get_branch_name()})
 
         return await render_template(
             "main-page.jinja",
@@ -98,7 +97,6 @@ async def wiki(locale: str, article: str):
             current_lang=current_lang,
             available_langs=available_langs,
             header_items=header_items,
-            repo_data=repo_data,
         )
 
     # Get the first heading content
@@ -130,6 +128,5 @@ async def wiki(locale: str, article: str):
         relative_wiki_path=relative_wiki_path,
         current_lang=current_lang,
         available_langs=available_langs,
-        repo_data=repo_data,
         header_items=header_items,
     )

@@ -3,7 +3,6 @@ import webbrowser
 
 from quart import Blueprint, redirect, render_template, request
 
-from app.git_repo import repo_data
 from app.language_list import get_lang_info
 from app.meta.config import OSU_WIKI_PATH
 from app.run_checks import run_checks
@@ -33,5 +32,4 @@ async def osu_wiki_tools(article: str, locale: str):
             {"name": "osu-wiki-tools"},
             {"name": relative_wiki_path},
         ],
-        repo_data=repo_data,
     )
