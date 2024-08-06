@@ -2,8 +2,7 @@ import os
 import webbrowser
 
 import yaml
-from flask import Blueprint, redirect, render_template, request, send_from_directory
-from werkzeug import Response
+from quart import Blueprint, redirect, render_template, request, send_from_directory
 
 from meta.config import OSU_WIKI_PATH, REDIRECT_FILE_PATH
 from meta.languages import locales_dict
@@ -19,7 +18,7 @@ bp = Blueprint("wiki", __name__, url_prefix="/wiki")
 
 @bp.route("/<path:article>")
 @bp.route("/<locale>/<path:article>")
-def wiki(article: str, locale: str = "") -> Response | str:
+async def wiki(article: str, locale: str | None = None):
     # Redirect if no locale is specified
     if not locale:
         return redirect(f"/wiki/en/{article}")
@@ -40,7 +39,7 @@ def wiki(article: str, locale: str = "") -> Response | str:
         file_name = os.path.basename(article)
         img_path = os.path.join(OSU_WIKI_PATH, "wiki", os.path.dirname(article))
 
-        return send_from_directory(img_path, file_name)
+        return await send_from_directory(img_path, file_name)
 
     # Get the link for GitHub and the article path in this computer
     wiki_path = f"wiki/{article}/{locale}.md"
@@ -74,7 +73,7 @@ def wiki(article: str, locale: str = "") -> Response | str:
             {"name": parent_pages, "href": f"/wiki/{locale}/{parent_pages}"},
         )
 
-    return render_template(
+    return await render_template(
         "wiki.jinja",
         content=html_content,
         front_matter=load_front_matter(markdown_content),
@@ -91,7 +90,7 @@ def wiki(article: str, locale: str = "") -> Response | str:
 
 
 @bp.route("/<locale>/Main_page")
-def main_page(locale: str, article: str = "Main_page") -> Response | str:
+async def main_page(locale: str, article: str = "Main_page"):
     if locale not in locales_dict:
         return redirect("/wiki/en/Main_page")
 
@@ -111,7 +110,7 @@ def main_page(locale: str, article: str = "Main_page") -> Response | str:
 
     html_content = convert_to_html(markdown_content, article, locale)
 
-    return render_template(
+    return await render_template(
         "main-page.jinja",
         content=html_content,
         front_matter=load_front_matter(markdown_content),

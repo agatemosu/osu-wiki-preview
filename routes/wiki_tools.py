@@ -1,8 +1,7 @@
 import os
 import webbrowser
 
-from flask import Blueprint, redirect, render_template, request
-from werkzeug import Response
+from quart import Blueprint, redirect, render_template, request
 
 from meta.config import OSU_WIKI_PATH
 from scripts.git_repo import get_branch_name, get_owner_name
@@ -13,7 +12,7 @@ bp = Blueprint("osu-wiki-tools", __name__, url_prefix="/osu-wiki-tools")
 
 
 @bp.route("/wiki/<path:article>/<locale>.md")
-def osu_wiki_tools(article: str, locale: str) -> Response | str:
+async def osu_wiki_tools(article: str, locale: str):
     wiki_path = f"wiki/{article}/{locale}.md"
 
     if "open" in request.args:
@@ -24,7 +23,7 @@ def osu_wiki_tools(article: str, locale: str) -> Response | str:
     results = run_checks(wiki_path)
     current_lang = get_lang_info(locale)
 
-    return render_template(
+    return await render_template(
         "osu-wiki-tools.jinja",
         repository_owner=get_owner_name(),
         current_branch=get_branch_name(),

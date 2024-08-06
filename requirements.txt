@@ -1,6 +1,5 @@
 beautifulsoup4
-Flask
-Flask-Assets
+Quart
 GitPython
 markdown-it-py
 mdit-py-plugins
