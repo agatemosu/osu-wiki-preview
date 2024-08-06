@@ -1,7 +1,0 @@
-beautifulsoup4
-Quart
-GitPython
-markdown-it-py
-mdit-py-plugins
-osu-wiki-tools
-PyYAML

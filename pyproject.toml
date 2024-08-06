@@ -1,0 +1,32 @@
+[project]
+name = "osu-wiki-preview"
+version = "0.1.0"
+dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "quart>=0.19.6",
+    "gitpython>=3.1.43",
+    "markdown-it-py>=3.0.0",
+    "mdit-py-plugins>=0.4.1",
+    "osu-wiki-tools>=2.3.0",
+    "pyyaml>=6.0.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.rye.scripts]
+dev = { call = "app" }
+serve = { cmd = "quart run" }
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
