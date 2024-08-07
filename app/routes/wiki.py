@@ -57,23 +57,42 @@ async def wiki(locale: str, article: str):
     relative_wiki_path = f"wiki/{article}/{locale}.md"
     absolute_article_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
 
-    current_lang = get_lang_info(locale)
     header_items = [{"name": "index", "href": f"/wiki/{locale}/Main_page"}]
+    using_default_locale = False
 
     if not os.path.isfile(absolute_article_path):
-        header_items.append({"name": "Not found"})
+        if not os.path.isdir(os.path.dirname(absolute_article_path)):
+            header_items.append({"name": "Not found"})
+            current_lang = get_lang_info(locale)
 
-        return await render_template(
-            "not-found.jinja",
-            article=article,
-            relative_wiki_path=relative_wiki_path,
-            current_lang=current_lang,
-            header_items=header_items,
-        )
+            return await render_template(
+                "not-found.jinja",
+                article=article,
+                relative_wiki_path=relative_wiki_path,
+                current_lang=current_lang,
+                header_items=header_items,
+            )
+
+        using_default_locale = True
 
     if "open" in request.args:
         webbrowser.open(absolute_article_path)
         return redirect(request.path)
+
+    return await render_page(article, locale, header_items, using_default_locale)
+
+
+async def render_page(
+    article: str,
+    locale: str,
+    header_items: list[dict[str, str]],
+    using_default_locale: bool,
+):
+    current_lang = get_lang_info(locale)
+    wiki_locale = "en" if using_default_locale else locale
+
+    relative_wiki_path = f"wiki/{article}/{wiki_locale}.md"
+    absolute_article_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
 
     with open(absolute_article_path, encoding="utf-8") as file:
         markdown_content = file.read()
@@ -84,15 +103,20 @@ async def wiki(locale: str, article: str):
     front_matter = load_front_matter(markdown_content)
     html_content = convert_to_html(markdown_content, article, locale)
 
+    base_context = {
+        "html_content": html_content,
+        "front_matter": front_matter,
+        "article": article,
+        "relative_wiki_path": relative_wiki_path,
+        "current_lang": current_lang,
+        "available_langs": available_langs,
+        "using_default_locale": using_default_locale,
+    }
+
     if front_matter.get("layout") == "main_page":
         return await render_template(
             "main-page.jinja",
-            html_content=html_content,
-            front_matter=front_matter,
-            article=article,
-            relative_wiki_path=relative_wiki_path,
-            current_lang=current_lang,
-            available_langs=available_langs,
+            **base_context,
             header_items=header_items,
         )
 
@@ -117,13 +141,8 @@ async def wiki(locale: str, article: str):
 
     return await render_template(
         "wiki.jinja",
-        html_content=html_content,
-        front_matter=front_matter,
+        **base_context,
         article_title=article_title,
-        article=article,
         toc=toc,
-        relative_wiki_path=relative_wiki_path,
-        current_lang=current_lang,
-        available_langs=available_langs,
         header_items=header_items,
     )
