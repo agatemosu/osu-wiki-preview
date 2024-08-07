@@ -1,3 +1,9 @@
+{% if using_default_locale %}
+	<div class="wiki-notice">
+		Requested page is not yet translated to the selected language
+		({{ current_lang["name"] }}). Showing English version.
+	</div>
+{% endif %}
 {% if front_matter["needs_cleanup"] %}
 	<div class="wiki-notice">
 		This page does not meet the standards of the osu! wiki and needs to be
