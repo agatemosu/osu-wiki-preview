@@ -1,5 +1,6 @@
 // @ts-check
 
+import { setButtonInactive, setMenuInactive } from "./menus.js";
 import { $, $$ } from "./utils.js";
 
 /**
@@ -19,13 +20,12 @@ export function hideAllMenus(event) {
 
 	const visibleMenus = $$('.js-click-menu--active[data-visibility="visible"]');
 	for (const menu of visibleMenus) {
-		menu.dataset.visibility = "hidden";
-		menu.classList.remove("js-click-menu--active");
+		setMenuInactive(menu);
 	}
 
 	const activeButtons = $$(".js-click-menu--active[data-click-menu-target]");
 	for (const button of activeButtons) {
-		button.classList.remove("js-click-menu--active");
+		setButtonInactive(button);
 	}
 
 	const activeBlackout = $('.js-blackout[data-visibility="visible"]');

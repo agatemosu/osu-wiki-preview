@@ -1,35 +1,35 @@
 // @ts-check
 
+import { closeClickMenu, openClickMenu } from "./menus.js";
+import { toggleNav, toggleNavTab } from "./nav.js";
 import { $, $$ } from "./utils.js";
-
-const blackoutElement = /** @type {HTMLElement} */ ($(".js-blackout"));
 
 /**
  * @param {HTMLElement} button
  */
 function toggleClickMenu(button) {
 	const clickMenuId = button.dataset.clickMenuTarget;
-
 	const clickMenuTarget = $(`[data-click-menu-id="${clickMenuId}"]`);
 
 	if (!clickMenuTarget) {
 		return;
 	}
 
+	if (button.classList.contains("mobile-menu-tab")) {
+		toggleNavTab(button, clickMenuTarget);
+		return;
+	}
+
 	const isMenuVisible = clickMenuTarget.dataset.visibility === "visible";
-	const newVisibility = isMenuVisible ? "hidden" : "visible";
 
-	clickMenuTarget.dataset.visibility = newVisibility;
-	clickMenuTarget.classList.toggle("js-click-menu--active");
-
-	button.classList.toggle("js-click-menu--active");
+	if (isMenuVisible) {
+		closeClickMenu(button, clickMenuTarget);
+	} else {
+		openClickMenu(button, clickMenuTarget);
+	}
 
 	if (clickMenuId === "mobile-menu") {
-		// In osu-web, it has an animation
-		clickMenuTarget.style.display = isMenuVisible ? "none" : "block";
-
-		document.body.classList.toggle("js-nav2--active");
-		blackoutElement.dataset.visibility = newVisibility;
+		toggleNav(clickMenuTarget, isMenuVisible);
 	}
 }
 

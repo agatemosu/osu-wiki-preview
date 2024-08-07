@@ -70,11 +70,24 @@
 							</span>
 							<span class="u-ellipsis-overflow">Agatem</span>
 						</a>
-						<button class="mobile-menu-tab js-click-menu js-click-menu--active">
+						<button
+							class="mobile-menu-tab js-click-menu"
+							data-click-menu-target="mobile-nav"
+						>
 							<span class="fas fa-sitemap"></span>
 						</button>
+						<button
+							class="mobile-menu-tab js-click-menu"
+							data-click-menu-target="mobile-branch-notification"
+						>
+							<span class="fas fa-code-branch"></span>
+						</button>
 					</div>
-					<div class="mobile-menu__item js-click-menu js-click-menu--active">
+					<div
+						class="mobile-menu__item js-click-menu"
+						data-click-menu-id="mobile-nav"
+						data-visibility="hidden"
+					>
 						{% for item in nav_items %}
 							<div class="navbar-mobile-item">
 								<a
@@ -91,6 +104,13 @@
 								</a>
 							</div>
 						{% endfor %}
+					</div>
+					<div
+						class="mobile-menu__item js-click-menu"
+						data-click-menu-id="mobile-branch-notification"
+						data-visibility="hidden"
+					>
+						{% include "./includes/branches.jinja" %}
 					</div>
 				</div>
 			</div>
@@ -132,18 +152,24 @@
 						<div class="nav2__colgroup nav2__colgroup--icons">
 							<div class="nav2__col nav2__col--notifications">
 								<div class="nav2__notification-container">
-									<a
+									<button
 										class="nav-button nav-button--notifications js-click-menu"
 										data-click-menu-target="nav2-branch-notification-widget"
 									>
 										<span class="notification-icon notification-icon--glow">
 											<i class="fas fa-code-branch"></i>
 											<span class="notification-icon__count">
-												{{ repo_data["branch"] }}
+												{{ repo_data["active_branch"] }}
 											</span>
 										</span>
-									</a>
-									{# Select branch #}
+									</button>
+									<div
+										class="nav-click-popup js-click-menu"
+										data-click-menu-id="nav2-branch-notification-widget"
+										data-visibility="hidden"
+									>
+										{% include "./includes/branches.jinja" %}
+									</div>
 								</div>
 							</div>
 							<div class="nav2__col nav2__col--avatar">

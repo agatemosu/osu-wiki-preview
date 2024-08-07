@@ -34,7 +34,7 @@
 	<div class="osu-page osu-page--wiki">
 		<div class="wiki-page__content">
 			<div class="osu-md osu-md--wiki">
-				<pre><code>Current branch: <b>{{ repo_data["branch"] }}</b></code></pre>
+				<pre><code>Current branch: <b>{{ repo_data["active_branch"] }}</b></code></pre>
 				{% for result in results %}
 					<pre><code>{{ result }}</code></pre>
 				{% endfor %}

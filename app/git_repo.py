@@ -1,12 +1,10 @@
+from typing import Any
+
 from git import Repo
 
 from app.meta.config import OSU_WIKI_PATH
 
 repo = Repo(OSU_WIKI_PATH)
-
-
-def get_branch_name() -> str:
-    return repo.active_branch.name
 
 
 def get_owner_name() -> str:
@@ -19,5 +17,9 @@ def get_owner_name() -> str:
     return owner
 
 
-def get_repo_data() -> dict:
-    return {"branch": get_branch_name(), "owner": get_owner_name()}
+def get_repo_data() -> dict[str, Any]:
+    return {
+        "active_branch": repo.active_branch.name,
+        "branches": repo.branches,
+        "owner": get_owner_name(),
+    }

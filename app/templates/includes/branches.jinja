@@ -1,0 +1,38 @@
+<div class="notification-popup u-fancy-scrollbar">
+	<div class="notification-popup__scroll-container">
+		<div class="notification-popup__buttons">
+			<span>
+				Current branch:
+				<span class="notification-popup__filter">
+					{{ repo_data["active_branch"] }}
+				</span>
+			</span>
+		</div>
+		<div class="notification-stacks">
+			{% for branch in repo_data["branches"] %}
+				<div
+					class="notification-popup-item notification-popup-item--one notification-popup-item--channel"
+				>
+					<div class="notification-popup-item__main">
+						<div class="notification-popup-item__content">
+							<div class="notification-popup-item__main">
+								<div class="notification-popup-item__content">
+									<div
+										class="notification-popup-item__row notification-popup-item__row--message"
+									>
+										{{ branch.name }}
+									</div>
+									<a
+										class="notification-popup-item__row notification-popup-item__row--time u-hover"
+									>
+										{{ branch.commit.hexsha }}
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
