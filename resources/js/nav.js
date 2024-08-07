@@ -1,9 +1,9 @@
 // @ts-check
 
-import { fadeIn, fadeOut, isVisible } from "./fade.js";
 import { openClickMenu } from "./menus.js";
-import { slideDown, slideUp } from "./slide.js";
-import { $, $$ } from "./utils.js";
+import { fadeIn, fadeOut, isVisible } from "./utils/fade.js";
+import { $, $$ } from "./utils/selectors.js";
+import { slideDown, slideUp } from "./utils/slide.js";
 
 let activeNavTimeout;
 const blackoutElement = /** @type {HTMLElement} */ ($(".js-blackout"));

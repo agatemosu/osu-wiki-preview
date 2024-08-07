@@ -1,9 +1,9 @@
 // @ts-check
 
-import { isVisible } from "./fade.js";
 import { closeClickMenu, openClickMenu } from "./menus.js";
 import { toggleNav, toggleNavTab } from "./nav.js";
-import { $, $$ } from "./utils.js";
+import { isVisible } from "./utils/fade.js";
+import { $, $$ } from "./utils/selectors.js";
 
 /**
  * @param {HTMLElement} button

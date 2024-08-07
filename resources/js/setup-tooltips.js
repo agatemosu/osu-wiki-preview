@@ -1,7 +1,7 @@
 // @ts-check
 
 import tippy from "tippy.js";
-import { $$ } from "./utils.js";
+import { $$ } from "./utils/selectors.js";
 
 export function setupTooltips() {
 	const elements = $$("[title]");

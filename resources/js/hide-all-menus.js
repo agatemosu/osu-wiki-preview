@@ -1,8 +1,8 @@
 // @ts-check
 
-import { fadeOut } from "./fade.js";
 import { setButtonInactive, setMenuInactive } from "./menus.js";
-import { $, $$ } from "./utils.js";
+import { fadeOut } from "./utils/fade.js";
+import { $, $$ } from "./utils/selectors.js";
 
 /**
  * @param {MouseEvent} event

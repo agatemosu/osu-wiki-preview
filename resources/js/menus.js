@@ -1,6 +1,6 @@
 // @ts-check
 
-import { fadeIn, fadeOut } from "./fade.js";
+import { fadeIn, fadeOut } from "./utils/fade.js";
 
 /**
  * @param {HTMLElement} button
