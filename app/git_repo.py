@@ -19,4 +19,5 @@ def get_owner_name() -> str:
     return owner
 
 
-repo_data = {"branch": get_branch_name(), "owner": get_owner_name()}
+def get_repo_data() -> dict:
+    return {"branch": get_branch_name(), "owner": get_owner_name()}

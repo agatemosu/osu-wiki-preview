@@ -1,7 +1,7 @@
 from quart import Quart, redirect, request
 
 from app.routes import assets, wiki, wiki_tools
-from app.git_repo import repo_data
+from app.git_repo import get_repo_data
 
 app = Quart(__name__)
 app.register_blueprint(assets.bp)
@@ -12,7 +12,7 @@ app.register_blueprint(wiki_tools.bp)
 @app.context_processor
 def inject_globals():
     return {
-        "repo_data": repo_data,
+        "repo_data": get_repo_data(),
     }
 
 
