@@ -1,5 +1,6 @@
 // @ts-check
 
+import { isVisible } from "./fade.js";
 import { closeClickMenu, openClickMenu } from "./menus.js";
 import { toggleNav, toggleNavTab } from "./nav.js";
 import { $, $$ } from "./utils.js";
@@ -20,7 +21,7 @@ function toggleClickMenu(button) {
 		return;
 	}
 
-	const isMenuVisible = clickMenuTarget.dataset.visibility === "visible";
+	const isMenuVisible = isVisible(clickMenuTarget);
 
 	if (isMenuVisible) {
 		closeClickMenu(button, clickMenuTarget);

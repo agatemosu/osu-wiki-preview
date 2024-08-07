@@ -1,5 +1,7 @@
 // @ts-check
 
+import { fadeIn, fadeOut } from "./fade.js";
+
 /**
  * @param {HTMLElement} button
  * @param {HTMLElement} menu
@@ -22,7 +24,7 @@ export function closeClickMenu(button, menu) {
  * @param {HTMLElement} menu
  */
 export function setMenuActive(menu) {
-	menu.dataset.visibility = "visible";
+	fadeIn(menu);
 	menu.classList.add("js-click-menu--active");
 }
 
@@ -30,7 +32,7 @@ export function setMenuActive(menu) {
  * @param {HTMLElement} menu
  */
 export function setMenuInactive(menu) {
-	menu.dataset.visibility = "hidden";
+	fadeOut(menu);
 	menu.classList.remove("js-click-menu--active");
 }
 

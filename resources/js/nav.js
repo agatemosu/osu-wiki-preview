@@ -1,5 +1,6 @@
 // @ts-check
 
+import { fadeIn, fadeOut, isVisible } from "./fade.js";
 import { openClickMenu } from "./menus.js";
 import { $, $$ } from "./utils.js";
 
@@ -14,7 +15,7 @@ function closeAllTabs() {
 	const allTabs = $$(".mobile-menu__item[data-click-menu-id]");
 	for (const tab of allTabs) {
 		tab.classList.remove("js-click-menu--active");
-		tab.dataset.visibility = "hidden";
+		fadeOut(tab);
 	}
 }
 
@@ -39,7 +40,7 @@ export function toggleNav(clickMenuTarget, isMenuVisible) {
 		clickMenuTarget.style.display = "none";
 
 		document.body.classList.remove("js-nav2--active");
-		blackoutElement.dataset.visibility = "hidden";
+		fadeOut(blackoutElement);
 
 		closeAllTabs();
 		return;
@@ -51,7 +52,7 @@ export function toggleNav(clickMenuTarget, isMenuVisible) {
 	clickMenuTarget.style.display = "block";
 
 	document.body.classList.add("js-nav2--active");
-	blackoutElement.dataset.visibility = "visible";
+	fadeIn(blackoutElement);
 }
 
 /**
@@ -59,7 +60,7 @@ export function toggleNav(clickMenuTarget, isMenuVisible) {
  * @param {HTMLElement} clickMenuTarget
  */
 export function toggleNavTab(button, clickMenuTarget) {
-	const isTabActive = clickMenuTarget.dataset.visibility === "visible";
+	const isTabActive = isVisible(clickMenuTarget);
 
 	closeAllTabs();
 

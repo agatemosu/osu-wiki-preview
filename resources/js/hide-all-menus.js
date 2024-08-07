@@ -1,5 +1,6 @@
 // @ts-check
 
+import { fadeOut } from "./fade.js";
 import { setButtonInactive, setMenuInactive } from "./menus.js";
 import { $, $$ } from "./utils.js";
 
@@ -30,7 +31,7 @@ export function hideAllMenus(event) {
 
 	const activeBlackout = $('.js-blackout[data-visibility="visible"]');
 	if (activeBlackout) {
-		activeBlackout.dataset.visibility = "hidden";
+		fadeOut(activeBlackout);
 	}
 
 	document.body.classList.remove("js-nav2--active");
