@@ -2,8 +2,10 @@
 
 import { fadeIn, fadeOut, isVisible } from "./fade.js";
 import { openClickMenu } from "./menus.js";
+import { slideDown, slideUp } from "./slide.js";
 import { $, $$ } from "./utils.js";
 
+let activeNavTimeout;
 const blackoutElement = /** @type {HTMLElement} */ ($(".js-blackout"));
 
 function closeAllTabs() {
@@ -36,20 +38,24 @@ function openDefaultTab() {
  * @param {boolean} isMenuVisible
  */
 export function toggleNav(clickMenuTarget, isMenuVisible) {
-	if (isMenuVisible) {
-		clickMenuTarget.style.display = "none";
+	const duration = 150;
 
-		document.body.classList.remove("js-nav2--active");
+	if (isMenuVisible) {
 		fadeOut(blackoutElement);
 
+		slideUp(clickMenuTarget, duration);
 		closeAllTabs();
+
+		activeNavTimeout = setTimeout(() => {
+			document.body.classList.remove("js-nav2--active");
+		}, duration);
 		return;
 	}
 
-	openDefaultTab();
+	clearTimeout(activeNavTimeout);
 
-	// In osu-web, it has an animation
-	clickMenuTarget.style.display = "block";
+	openDefaultTab();
+	slideDown(clickMenuTarget, duration);
 
 	document.body.classList.add("js-nav2--active");
 	fadeIn(blackoutElement);
