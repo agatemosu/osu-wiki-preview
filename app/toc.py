@@ -95,7 +95,7 @@ def create_toc_html(
         if isinstance(item, TocItem):
             html += link(item, link_classlist)
 
-        elif isinstance(item, tuple):
+        else:
             main_item, sub_items = item
             html += link(main_item, link_classlist)
             html += create_toc_html(sub_items, False)
