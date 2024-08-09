@@ -22,7 +22,7 @@ managed = true
 dev-dependencies = []
 
 [tool.rye.scripts]
-dev = { call = "app" }
+dev = { cmd = "quart --debug run" }
 serve = { cmd = "quart run" }
 
 [tool.hatch.metadata]
