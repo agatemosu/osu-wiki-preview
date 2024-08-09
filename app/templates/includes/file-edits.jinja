@@ -26,6 +26,13 @@
 							>
 								{{ file.path }}
 							</div>
+							<div
+								class="notification-popup-item__row notification-popup-item__row--time"
+							>
+								<time datetime="{{ file.last_mod['iso'] }}">
+									{{ file.last_mod["ago"] }}
+								</time>
+							</div>
 						</div>
 					</div>
 				</div>

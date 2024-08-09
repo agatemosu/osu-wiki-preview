@@ -1,7 +1,10 @@
+import os
 from dataclasses import dataclass
+from datetime import datetime
 from enum import Enum
 from typing import Any
 
+import humanize
 from git import Diff, Repo
 
 from app.meta.config import OSU_WIKI_PATH
@@ -21,6 +24,7 @@ class ChangedFile:
     path: str | None
     colour: Colour
     verb: str
+    last_mod: dict[str, str]
 
 
 def get_display(item: Diff) -> tuple[Colour, str]:
@@ -36,11 +40,32 @@ def get_display(item: Diff) -> tuple[Colour, str]:
     return Colour.Yellow, "modified"
 
 
+def get_last_mod(path: str | None, is_deleted: bool = False) -> dict[str, str]:
+    if not path:
+        return {}
+
+    if is_deleted:
+        commit = next(repo.iter_commits(paths=path, max_count=1))
+        dt = commit.committed_datetime
+
+    else:
+        file_path = os.path.join(OSU_WIKI_PATH, path)
+
+        timestamp = os.path.getmtime(file_path)
+        dt = datetime.fromtimestamp(timestamp)
+
+    return {
+        "iso": dt.isoformat(timespec="seconds"),
+        "ago": humanize.naturaltime(dt),
+    }
+
+
 def get_changed_files() -> list[ChangedFile]:
     changed_files = []
 
     for file in repo.untracked_files:
-        c_file = ChangedFile(file, Colour.Green, "untracked")
+        last_mod = get_last_mod(file)
+        c_file = ChangedFile(file, Colour.Green, "untracked", last_mod)
         changed_files.append(c_file)
 
     for item in repo.head.commit.diff(None):
@@ -50,8 +75,9 @@ def get_changed_files() -> list[ChangedFile]:
         )
 
         color, verb = get_display(item)
+        last_mod = get_last_mod(item.b_path, item.deleted_file)
 
-        c_file = ChangedFile(file_path, color, verb)
+        c_file = ChangedFile(file_path, color, verb, last_mod)
         changed_files.append(c_file)
 
     return changed_files

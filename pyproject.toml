@@ -9,6 +9,7 @@ dependencies = [
     "mdit-py-plugins>=0.4.1",
     "osu-wiki-tools>=2.3.0",
     "pyyaml>=6.0.1",
+    "humanize>=4.10.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"

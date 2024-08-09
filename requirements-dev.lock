@@ -35,6 +35,8 @@ h2==4.1.0
     # via hypercorn
 hpack==4.0.0
     # via h2
+humanize==4.10.0
+    # via osu-wiki-preview
 hypercorn==0.17.3
     # via quart
 hyperframe==6.0.1
