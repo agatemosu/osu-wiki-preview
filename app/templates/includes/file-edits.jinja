@@ -1,0 +1,35 @@
+<div class="notification-popup u-fancy-scrollbar">
+	<div class="notification-popup__scroll-container">
+		<div class="notification-popup__buttons">
+			<span>
+				<span class="notification-popup__filter">
+					{{ repo_data["changed_files_count"] }}
+				</span>
+				changed files
+			</span>
+		</div>
+		<div class="notification-stacks">
+			{% for file in repo_data["changed_files"] %}
+				<div
+					class="notification-popup-item notification-popup-item--one notification-popup-item--channel"
+				>
+					<div class="notification-popup-item__main">
+						<div class="notification-popup-item__content">
+							<div
+								class="notification-popup-item__row notification-popup-item__row--category"
+								style="color: {{ file.colour.value }}"
+							>
+								{{ file.verb }}
+							</div>
+							<div
+								class="notification-popup-item__row notification-popup-item__row--message"
+							>
+								{{ file.path }}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
