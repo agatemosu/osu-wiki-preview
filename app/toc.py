@@ -31,9 +31,8 @@ def add_item(toc: Toc, el: Tag) -> None:
     if lvl(el) == 2:
         toc.append(TocItem(el))
 
-    if lvl(el) == 3:
-        if not isinstance(toc[-1], tuple):
-            raise Exception(f"Type of toc item not correct: {type(toc[-1])}")
+    elif lvl(el) == 3:
+        assert type(toc[-1]) is tuple
 
         toc[-1][1].append(TocItem(el))
 
@@ -96,6 +95,8 @@ def create_toc_html(
             html += link(item, link_classlist)
 
         else:
+            assert type(item) is tuple
+
             main_item, sub_items = item
             html += link(main_item, link_classlist)
             html += create_toc_html(sub_items, False)
