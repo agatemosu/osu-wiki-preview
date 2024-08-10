@@ -19,8 +19,8 @@ Toc = list[TocItem | LevelWithSubItems]
 def get_next_el(lst: list, index: int) -> Any | None:
     if index < len(lst) - 1:
         return lst[index + 1]
-    else:
-        return None
+
+    return None
 
 
 def lvl(tag: Tag) -> int:
