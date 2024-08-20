@@ -8,7 +8,7 @@ const config = {
 	entry: "./resources/js/index.js",
 	output: {
 		filename: "main.js",
-		path: "./app/static",
+		path: path.resolve("./app/static"),
 	},
 	module: {
 		rules: [
