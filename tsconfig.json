@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"moduleResolution": "bundler",
+		"target": "es2015",
+		"strict": true,
+		"baseUrl": "./resources",
+		"paths": {
+			"@css/*": ["./css/*"],
+			"@/*": ["./js/*"]
+		}
+	}
+}

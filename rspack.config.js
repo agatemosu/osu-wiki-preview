@@ -5,13 +5,18 @@ import rspack from "@rspack/core";
 
 /** @type {rspack.Configuration} */
 const config = {
-	entry: "./resources/js/index.js",
+	entry: "./resources/js/index.ts",
 	output: {
 		filename: "main.js",
 		path: path.resolve("./app/static"),
 	},
 	module: {
 		rules: [
+			{
+				test: /\.ts$/,
+				exclude: [/node_modules/],
+				loader: "builtin:swc-loader"
+			},
 			{
 				test: /\.less$/,
 				use: [
@@ -37,6 +42,9 @@ const config = {
 		],
 	},
 	resolve: {
+		tsConfig: {
+			configFile: path.resolve("./tsconfig.json"),
+		},
 		alias: {
 			"@fonts": path.resolve("../osu-web/resources/fonts"),
 			"@images": path.resolve("../osu-web/public/images"),
