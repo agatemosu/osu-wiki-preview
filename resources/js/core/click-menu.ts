@@ -8,8 +8,8 @@ export interface ClickMenuCurrent {
 }
 
 export class ClickMenu {
-	current: string | null | undefined = null;
-	documentMouseEventTarget: EventTarget | null = null;
+	private current: string | null | undefined = null;
+	private documentMouseEventTarget: EventTarget | null = null;
 
 	constructor() {
 		addGlobalEventListener("click", ".js-click-menu--close", this.close);
@@ -23,7 +23,7 @@ export class ClickMenu {
 	}
 
 	close = () => {
-		this.show(undefined);
+		this.show();
 	};
 
 	closestMenuId = (child: Element | null | undefined) => {
@@ -46,7 +46,7 @@ export class ClickMenu {
 		);
 	};
 
-	show = (target: string | null | undefined) => {
+	show = (target?: string | null) => {
 		const previousTree = this.tree();
 
 		this.current = target;
@@ -128,17 +128,17 @@ export class ClickMenu {
 		return tree;
 	};
 
-	onDocumentMousedown = (e: MouseEvent) => {
+	private readonly onDocumentMousedown = (e: MouseEvent) => {
 		this.documentMouseEventTarget = e.button === 0 ? e.target : null;
 	};
 
-	onDocumentMouseup = (e: MouseEvent) => {
+	private readonly onDocumentMouseup = (e: MouseEvent) => {
 		if (this.documentMouseEventTarget !== e.target) return;
 		if (e.button !== 0) return;
 		if (this.current == null) return;
 		if (!(e.target instanceof HTMLElement)) return;
 		if (e.target.closest(".js-click-menu")) return;
 
-		this.show(undefined);
+		this.show();
 	};
 }
