@@ -10,9 +10,9 @@ declare global {
 		addEventListener<K extends keyof CustomEventMap>(
 			type: K,
 			listener: (this: Document, ev: CustomEventMap[K]) => void,
-		): void;
+		): any;
 
-		dispatchEvent<K extends keyof CustomEventMap>(ev: CustomEventMap[K]): void;
+		dispatchEvent<K extends keyof CustomEventMap>(ev: CustomEventMap[K]): any;
 	}
 
 	interface Window {
