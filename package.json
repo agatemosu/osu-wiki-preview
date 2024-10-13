@@ -19,6 +19,7 @@
 		"inter-ui": "^3.19.3",
 		"less": "^4.2.0",
 		"less-loader": "^12.2.0",
+		"rspack-manifest-plugin": "^5.0.1",
 		"tippy.js": "^6.3.7"
 	},
 	"devDependencies": {

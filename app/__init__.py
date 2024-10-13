@@ -1,4 +1,5 @@
 from quart import Quart, redirect, request
+import json
 
 from app.routes import assets, wiki, wiki_tools
 from app.git_repo import get_repo_data
@@ -11,7 +12,11 @@ app.register_blueprint(wiki_tools.bp)
 
 @app.context_processor
 def inject_globals():
+    with open("./app/static/manifest.json") as f:
+        manifest = json.load(f)
+
     return {
+        "manifest": manifest,
         "repo_data": get_repo_data(),
     }
 

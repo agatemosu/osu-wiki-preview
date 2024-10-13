@@ -2,14 +2,19 @@
 
 import path from "node:path";
 import rspack from "@rspack/core";
+import { RspackManifestPlugin } from "rspack-manifest-plugin";
+
+/**
+ * @param {string} name
+ * @param {string} ext
+ * @param {string} hashType
+ */
+function outputFilename(name, ext = "[ext]", hashType = "contenthash:8") {
+	return `${name}.[${hashType}]${ext}`;
+}
 
 /** @type {rspack.Configuration} */
 const config = {
-	entry: "./resources/js/index.ts",
-	output: {
-		filename: "main.js",
-		path: path.resolve("./app/static"),
-	},
 	module: {
 		rules: [
 			{
@@ -27,19 +32,26 @@ const config = {
 			},
 			{
 				generator: {
-					filename: "images/[name].[contenthash:8][ext]",
+					filename: outputFilename("images/[name]"),
 				},
 				test: /(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/,
 				type: "asset/resource",
 			},
 			{
 				generator: {
-					filename: "fonts/[name].[contenthash:8][ext]",
+					filename: outputFilename("fonts/[name]"),
 				},
 				test: /(\.(woff2?|ttf|eot|otf)$|font.*\.svg$)/,
 				type: "asset/resource",
 			},
 		],
+	},
+	entry: "./resources/js/index.ts",
+	output: {
+		filename: outputFilename("js/[name]", ".js"),
+		path: path.resolve("./app/static"),
+		publicPath: "/static/",
+		clean: true,
 	},
 	resolve: {
 		tsConfig: {
@@ -52,12 +64,21 @@ const config = {
 	},
 	plugins: [
 		new rspack.CssExtractRspackPlugin({
-			filename: "main.css",
+			filename: outputFilename("css/[name]", ".css"),
+		}),
+		new RspackManifestPlugin({
+			filter: (file) =>
+				file.path.match(/^\/static\/(?:css|js)\/.*\.(?:css|js)$/) !== null,
+			map: (file) => {
+				const baseDir = file.path.match(/^\/static\/(css|js)\//)?.[1];
+				if (baseDir !== null && !file.name.startsWith(`${baseDir}/`)) {
+					file.name = `${baseDir}/${file.name}`;
+				}
+
+				return file;
+			},
 		}),
 	],
-	experiments: {
-		css: false,
-	},
 };
 
 export default config;
