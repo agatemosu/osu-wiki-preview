@@ -21,6 +21,12 @@ const config = {
 				test: /\.ts$/,
 				exclude: [/node_modules/],
 				loader: "builtin:swc-loader",
+				/** @type {rspack.SwcLoaderOptions} */
+				options: {
+					jsc: {
+						target: "es2015",
+					},
+				},
 			},
 			{
 				test: /\.less$/,
