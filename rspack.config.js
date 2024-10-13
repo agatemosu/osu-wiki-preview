@@ -15,7 +15,7 @@ const config = {
 			{
 				test: /\.ts$/,
 				exclude: [/node_modules/],
-				loader: "builtin:swc-loader"
+				loader: "builtin:swc-loader",
 			},
 			{
 				test: /\.less$/,

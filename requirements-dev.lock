@@ -35,7 +35,7 @@ h2==4.1.0
     # via hypercorn
 hpack==4.0.0
     # via h2
-humanize==4.10.0
+humanize==4.11.0
     # via osu-wiki-preview
 hypercorn==0.17.3
     # via quart
@@ -54,11 +54,11 @@ markupsafe==2.1.5
     # via jinja2
     # via quart
     # via werkzeug
-mdit-py-plugins==0.4.1
+mdit-py-plugins==0.4.2
     # via osu-wiki-preview
 mdurl==0.1.2
     # via markdown-it-py
-osu-wiki-tools==2.3.0
+osu-wiki-tools==2.3.2
     # via osu-wiki-preview
 pathspec==0.12.1
     # via yamllint
@@ -74,7 +74,7 @@ smmap==5.0.1
     # via gitdb
 soupsieve==2.5
     # via beautifulsoup4
-types-beautifulsoup4==4.12.0.20240511
+types-beautifulsoup4==4.12.0.20240907
 types-html5lib==1.1.11.20240806
     # via types-beautifulsoup4
 types-pyyaml==6.0.12.12
