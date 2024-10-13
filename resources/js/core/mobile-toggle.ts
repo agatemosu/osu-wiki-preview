@@ -7,9 +7,7 @@ export class MobileToggle {
 		addGlobalEventListener("click", ".js-mobile-toggle", this.toggle);
 	}
 
-	toggle = (_: MouseEvent, button: Element) => {
-		if (!(button instanceof HTMLElement)) return;
-
+	toggle = (_: MouseEvent, button: HTMLElement) => {
 		const targetId = button.dataset.mobileToggleTarget;
 
 		if (targetId == null) return;

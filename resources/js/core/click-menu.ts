@@ -88,9 +88,7 @@ export class ClickMenu {
 		document.dispatchEvent(event);
 	};
 
-	toggle = (e: MouseEvent, menu: Element) => {
-		if (!(menu instanceof HTMLElement)) return;
-
+	toggle = (e: MouseEvent, menu: HTMLElement) => {
 		const tree = this.tree();
 
 		e.preventDefault();
