@@ -6,7 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "rspack build",
-		"serve": "rspack serve"
+		"watch": "rspack build --watch"
 	},
 	"dependencies": {
 		"@discordapp/twemoji": "^15.1.0",
