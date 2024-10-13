@@ -6,20 +6,7 @@ export class Tooltips {
 		const timeElements = document.querySelectorAll("time");
 
 		for (const el of timeElements) {
-			const datetime = dayjs(el.dateTime);
-
-			const date = datetime.format("D MMMM YYYY");
-			const time = datetime.format("HH:mm:ss");
-			const offset = datetime.format("[UTC]Z");
-
-			const dateEl = document.createElement("b");
-			dateEl.textContent = date;
-
-			const textEl = document.createElement("span");
-			textEl.style.color = "hsl(var(--hsl-l2))";
-			textEl.textContent = `${time} ${offset}`;
-
-			el.title = `${dateEl.outerHTML} ${textEl.outerHTML}`;
+			el.title = this.timeagoTip(el, el.title).outerHTML;
 		}
 
 		const elements = document.querySelectorAll("[title]");
@@ -43,4 +30,34 @@ export class Tooltips {
 			el.removeAttribute("title");
 		}
 	}
+
+	timeagoTip = (el: HTMLTimeElement, title: string) => {
+		const timeString = el.dateTime ?? title;
+		const time = dayjs(timeString);
+
+		const $dateEl = document.createElement("strong");
+		$dateEl.textContent = time.format("D MMMM YYYY");
+
+		const $timeEl = document.createElement("span");
+		$timeEl.classList.add("tippy-box__time");
+		$timeEl.textContent = `${time.format("HH:mm:ss")} ${this.tzString(time)}`;
+
+		const $tipEl = document.createElement("span");
+		$tipEl.append($dateEl);
+		$tipEl.append(" ");
+		$tipEl.append($timeEl);
+
+		return $tipEl;
+	};
+
+	tzString = (time: dayjs.Dayjs) => {
+		const offset = time.utcOffset();
+
+		const offsetString =
+			offset % 60 === 0
+				? `${offset >= 0 ? "+" : ""}${offset / 60}`
+				: time.format("Z");
+
+		return `UTC${offsetString}`;
+	};
 }
