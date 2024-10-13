@@ -4,31 +4,29 @@
 .tippy-box {
   .default-border-radius();
 
-  &[data-theme~="osu"] {
-    border: 0 solid transparent;
-    color: #fff;
-    background-color: @osu-colour-b6;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
-    text-align: center;
-    pointer-events: none;
+  border: 0 solid transparent;
+  color: #fff;
+  background-color: @osu-colour-b6;
+  font-size: @font-size--normal;
+  line-height: 1.1;
+  padding: 2px 10px;
+  text-align: center;
+  pointer-events: none;
 
-    &[data-placement^="top"] > .tippy-arrow::before {
-      border-top-color: @osu-colour-b6;
-    }
+  &[data-placement^="top"] > .tippy-arrow::before {
+    border-top-color: @osu-colour-b6;
+  }
 
-    &[data-placement^="bottom"] > .tippy-arrow::before {
-      border-bottom-color: @osu-colour-b6;
-    }
+  &[data-placement^="bottom"] > .tippy-arrow::before {
+    border-bottom-color: @osu-colour-b6;
+  }
 
-    &[data-placement^="left"] > .tippy-arrow::before {
-      border-left-color: @osu-colour-b6;
-    }
+  &[data-placement^="left"] > .tippy-arrow::before {
+    border-left-color: @osu-colour-b6;
+  }
 
-    &[data-placement^="right"] > .tippy-arrow::before {
-      border-right-color: @osu-colour-b6;
-    }
+  &[data-placement^="right"] > .tippy-arrow::before {
+    border-right-color: @osu-colour-b6;
   }
 
   &__time {

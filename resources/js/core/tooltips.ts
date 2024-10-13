@@ -23,7 +23,6 @@ export class Tooltips {
 			tippy(el, {
 				content: el.title,
 				allowHTML: true,
-				theme: "osu",
 				delay: 100,
 				duration: 200,
 			});
