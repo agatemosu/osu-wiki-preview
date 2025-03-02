@@ -26,19 +26,19 @@ export class ClickMenu {
 		this.show();
 	};
 
-	closestMenuId = (child: Element | null | undefined) => {
+	closestMenuId = (child: Element | null) => {
 		return child
 			?.closest("[data-click-menu-id]")
-			?.getAttribute("data-click-menu-id");
+			?.getAttribute("data-click-menu-id") ?? null;
 	};
 
-	menu = (id: string | null | undefined) => {
+	menu = (id: string | null) => {
 		return document.querySelector(
 			`.js-click-menu[data-click-menu-id${id == null ? "" : `='${id}'`}]`,
 		);
 	};
 
-	menuLink = (id: string | null | undefined) => {
+	menuLink = (id: string | null) => {
 		return document.querySelector(
 			`.js-click-menu[data-click-menu-target${id == null ? "" : `='${id}'`}]`,
 		);
@@ -61,7 +61,7 @@ export class ClickMenu {
 				continue;
 			}
 
-			const menuId = menu.dataset.clickMenuId;
+			const menuId = menu.dataset.clickMenuId ?? null;
 
 			if (menuId == null || tree.indexOf(menuId) === -1) {
 				fadeOut(menu);
@@ -109,7 +109,7 @@ export class ClickMenu {
 	tree = () => {
 		if (this.current == null) return [];
 
-		let traverseId: string | null | undefined = this.current;
+		let traverseId: string | null = this.current;
 		const tree = [traverseId];
 
 		for (;;) {
