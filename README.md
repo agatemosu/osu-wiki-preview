@@ -25,13 +25,13 @@ folder/
 
 ### 2. Dependencies
 
-1. [rye](https://rye.astral.sh/guide/installation/)
+1. [uv](https://docs.astral.sh/uv/)
 2. [yarn](https://yarnpkg.com/getting-started/install)
 
 To install the dependencies:
 
 ```bash
-rye sync
+uv sync
 yarn install
 ```
 
@@ -46,7 +46,7 @@ yarn run build
 Execute the following command to run the website:
 
 ```bash
-rye run serve
+uv run quart run
 ```
 
 Open your web browser and navigate to <http://localhost:5000/> to access the osu! wiki preview.
