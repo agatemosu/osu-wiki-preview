@@ -1,5 +1,4 @@
 import os
-import webbrowser
 
 from quart import Blueprint, redirect, render_template, request
 
@@ -16,7 +15,7 @@ async def osu_wiki_tools(article: str, locale: str):
 
     if "open" in request.args:
         absolute_file_path = os.path.join(OSU_WIKI_PATH, relative_wiki_path)
-        webbrowser.open(absolute_file_path)
+        os.startfile(absolute_file_path)
         return redirect(request.path)
 
     results = run_checks(relative_wiki_path)

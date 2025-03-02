@@ -1,5 +1,4 @@
 import os
-import webbrowser
 
 import yaml
 from quart import Blueprint, redirect, render_template, request, send_from_directory
@@ -76,7 +75,7 @@ async def wiki(locale: str, article: str):
         using_default_locale = True
 
     if "open" in request.args:
-        webbrowser.open(absolute_article_path)
+        os.startfile(absolute_article_path)
         return redirect(request.path)
 
     return await render_page(article, locale, header_items, using_default_locale)
