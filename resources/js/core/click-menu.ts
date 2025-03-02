@@ -3,12 +3,12 @@ import { fadeIn, fadeOut } from "@/utils/fade.ts";
 
 export interface ClickMenuCurrent {
 	previousTree: string[];
-	target: string | null | undefined;
+	target: string | null;
 	tree: string[];
 }
 
 export class ClickMenu {
-	private current: string | null | undefined = null;
+	private current: string | null = null;
 	private documentMouseEventTarget: EventTarget | null = null;
 
 	constructor() {
@@ -27,11 +27,9 @@ export class ClickMenu {
 	};
 
 	closestMenuId = (child: Element | null | undefined) => {
-		if (child != null) {
-			return child
-				.closest("[data-click-menu-id]")
-				?.getAttribute("data-click-menu-id");
-		}
+		return child
+			?.closest("[data-click-menu-id]")
+			?.getAttribute("data-click-menu-id");
 	};
 
 	menu = (id: string | null | undefined) => {
@@ -46,7 +44,7 @@ export class ClickMenu {
 		);
 	};
 
-	show = (target?: string | null) => {
+	show = (target: string | null = null) => {
 		const previousTree = this.tree();
 
 		this.current = target;
