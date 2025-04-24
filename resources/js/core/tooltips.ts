@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import { DateTime } from "luxon";
 import tippy from "tippy.js";
 
 export class Tooltips {
@@ -32,14 +32,14 @@ export class Tooltips {
 
 	timeagoTip = (el: HTMLTimeElement, title: string) => {
 		const timeString = el.dateTime ?? title;
-		const time = dayjs(timeString);
+		const time = DateTime.fromISO(timeString);
 
 		const $dateEl = document.createElement("strong");
-		$dateEl.textContent = time.format("D MMMM YYYY");
+		$dateEl.textContent = time.toLocaleString(DateTime.DATE_FULL);
 
 		const $timeEl = document.createElement("span");
 		$timeEl.classList.add("tippy-box__time");
-		$timeEl.textContent = `${time.format("HH:mm:ss")} ${this.tzString(time)}`;
+		$timeEl.textContent = `${time.toLocaleString(DateTime.TIME_WITH_SECONDS)} ${time.offsetNameShort}`;
 
 		const $tipEl = document.createElement("span");
 		$tipEl.append($dateEl);
@@ -47,16 +47,5 @@ export class Tooltips {
 		$tipEl.append($timeEl);
 
 		return $tipEl;
-	};
-
-	tzString = (time: dayjs.Dayjs) => {
-		const offset = time.utcOffset();
-
-		const offsetString =
-			offset % 60 === 0
-				? `${offset >= 0 ? "+" : ""}${offset / 60}`
-				: time.format("Z");
-
-		return `UTC${offsetString}`;
 	};
 }
